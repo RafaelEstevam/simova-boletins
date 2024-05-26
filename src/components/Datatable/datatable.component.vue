@@ -2,15 +2,6 @@
   <div class="datatable">
     <datatableHeaderComponent />
     <datatableContentComponent />
-    <datatableContentComponent />
-    <datatableContentComponent />
-    <datatableContentComponent />
-    <datatableContentComponent />
-    <datatableContentComponent />
-    <datatableContentComponent />
-    <datatableContentComponent />
-    <datatableContentComponent />
-    <datatableContentComponent />
   </div>
 </template>
 

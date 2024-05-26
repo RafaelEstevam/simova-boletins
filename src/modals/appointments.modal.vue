@@ -13,7 +13,7 @@
 			<div class="appointments__modal__content__datatable">
 				<datatableComponent>
 					<datatableHeaderHeader />
-					<datatableContentComponent />
+					<datatableContentComponent :list="list" />
 				</datatableComponent>
 			</div>
 		</div>
@@ -42,7 +42,13 @@
       DatatableContentComponent,
 			CardComponent,
 			ButtonComponent
-		}
+		},
+    data(){
+      const list = [];
+      return{
+        list
+      }
+    }
 	})
 </script>
 

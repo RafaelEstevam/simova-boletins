@@ -2,8 +2,7 @@
   <div class="filter">
     <inputComponent />
     <inputComponent />
-    <!-- <buttonComponent @buttonAction="handleSubmit" /> -->
-    <button type="button" @click="handleSubmit">teste</button>
+    <button type="button" @click="handleFilter">Filrar</button>
   </div>
 </template>
 
@@ -21,9 +20,9 @@
     },
 
     methods: {
-      async handleSubmit() {
+      async handleFilter() {
         const response = await api.get('/appointments').then((response) => {
-          return response
+          return response.data
         }).catch((e) => {
           console.log(e);
         })
