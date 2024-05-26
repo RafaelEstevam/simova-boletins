@@ -8,6 +8,7 @@
 
 <script>
   import api from '@/config/api';
+  import { useStore } from 'vuex';
   import { defineComponent } from 'vue';
   import InputComponent from '@/components/Input/input.component.vue';
   import ButtonComponent from '@/components/Button/button.component.vue';
@@ -19,14 +20,17 @@
       ButtonComponent
     },
 
+    setup(){
+      const $store = useStore();
+    },
+
     methods: {
       async handleFilter() {
         const response = await api.get('/appointments').then((response) => {
-          return response.data
+          this.$store.dispatch('handleFilterAppointments', response.data)
         }).catch((e) => {
           console.log(e);
         })
-        console.log(response);
       }
     }
   })

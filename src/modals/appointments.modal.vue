@@ -11,9 +11,9 @@
 				<appointmentsFilter />
 			</filterComponent>
 			<div class="appointments__modal__content__datatable">
-				<datatableComponent>
+				<datatableComponent :list="list">
 					<datatableHeaderHeader />
-					<datatableContentComponent :list="list" />
+					<datatableContentComponent />
 				</datatableComponent>
 			</div>
 		</div>
@@ -21,7 +21,8 @@
 </template>
 
 <script>
-	import { defineComponent } from 'vue';
+	import { computed, defineComponent } from 'vue';
+  import { useStore } from 'vuex';
 
 	import FilterComponent from '@/components/Filter/filter.component.vue';
   import CardComponent from '@/components/Card/card.component.vue';
@@ -43,12 +44,37 @@
 			CardComponent,
 			ButtonComponent
 		},
+
+    setup(){
+      const $store = useStore();
+      const appointments = computed(() => $store.getters.appointments);
+      return {
+        $store,
+        appointments
+      }
+    },
+
     data(){
       const list = [];
-      return{
+      return {
         list
       }
-    }
+    },
+
+    watch:{
+      appointments(newItems, oldItems){
+        this.list = JSON.parse(JSON.stringify(newItems));
+      }
+    },
+
+    // data(){
+    //   const list = [
+    //     {id: "1"}
+    //   ];
+    //   return{
+    //     list
+    //   }
+    // }
 	})
 </script>
 
