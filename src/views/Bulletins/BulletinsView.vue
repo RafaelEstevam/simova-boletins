@@ -21,9 +21,10 @@
       </div>
     </defaultTemplate>
 
-    <!-- <modalComponent>
+    <modalComponent>
       <appointmentsModal />
-    </modalComponent> -->
+    </modalComponent>
+    
   </div>
 </template>
 
@@ -46,6 +47,7 @@ import AppointmentsModal from '@/modals/appointments.modal.vue';
 
 export default defineComponent({
   name: 'bulletins',
+
   components: {
     DefaultTemplate,
     FilterComponent,

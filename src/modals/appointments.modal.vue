@@ -8,12 +8,12 @@
     </div>
     <div class="appointments__modal__content__wrapper col">
       <filterComponent>
-        <appointmentsFilter @filterAction="handleFilter" />
+        <appointmentsFilter />
       </filterComponent>
       <div class="appointments__modal__content__datatable">
         <datatableComponent>
           <datatableHeaderComponent :columns="columns" />
-          <datatableContentComponent :list="list" :columns="columns" />
+          <datatableContentComponent :list="appointments" :columns="columns" />
         </datatableComponent>
       </div>
     </div>
@@ -21,8 +21,9 @@
 </template>
 
 <script>
-import api from '@/config/api';
-import { defineComponent } from 'vue';
+// import api from '@/config/api';
+import {useStore} from 'vuex';
+import { defineComponent, computed } from 'vue';
 
 import FilterComponent from '@/components/Filter/filter.component.vue';
 import CardComponent from '@/components/Card/card.component.vue';
@@ -44,8 +45,14 @@ export default defineComponent({
     CardComponent,
     ButtonComponent
   },
+  setup(){
+    const $store = useStore();
+    const appointments = computed(() => $store.state.appointments);
+    return{
+      appointments
+    }
+  },
   data() {
-    const list = [];
     const columns = [
       { label: 'Id', width: '10%', key:'id' },
       { label: 'Código', width: '10%', key:'code' },
@@ -53,18 +60,17 @@ export default defineComponent({
       { label: 'Cor', width: '20%', key:'color' },
     ];
     return {
-      list,
       columns
     }
   },
   methods: {
-    async handleFilter(body) {
-      const response = await api.get('/appointments').then((response) => {
-        this.list = response.data;
-      }).catch((e) => {
-        console.log(e);
-      })
-    }
+    // async handleFilter(body) {
+    //   const response = await api.get('/appointments').then((response) => {
+    //     this.list = response.data;
+    //   }).catch((e) => {
+    //     console.log(e);
+    //   })
+    // }
   }
 })
 </script>

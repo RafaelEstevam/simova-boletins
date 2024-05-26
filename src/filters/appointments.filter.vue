@@ -7,23 +7,33 @@
 </template>
 
 <script>
-  import { defineComponent } from 'vue';
-  import InputComponent from '@/components/Input/input.component.vue';
-  import ButtonComponent from '@/components/Button/button.component.vue';
+import api from '@/config/api';
+import { useStore } from 'vuex';
+import { defineComponent } from 'vue';
+import InputComponent from '@/components/Input/input.component.vue';
+import ButtonComponent from '@/components/Button/button.component.vue';
 
-  export default defineComponent({
-    name: 'appointmentsFilter',
-    components: {
-      InputComponent,
-      ButtonComponent
-    },
-
-    emits:['filterAction'],
-
-    methods: {
-      handleFilter(){
-        this.$emit('filterAction', {teste: 123})
-      }
+export default defineComponent({
+  name: 'appointmentsFilter',
+  components: {
+    InputComponent,
+    ButtonComponent
+  },
+  setup(){  
+    const $store = useStore();
+    return {
+      $store
     }
-  })
+  },
+
+  methods: {
+    async handleFilter(body) {
+      const response = await api.get('/appointments').then((response) => {
+        this.$store.dispatch('handleFilterAppointments', response.data)
+      }).catch((e) => {
+        console.log(e);
+      })
+    }
+  }
+})
 </script>
