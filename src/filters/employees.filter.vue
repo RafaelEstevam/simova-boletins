@@ -22,11 +22,10 @@ export default defineComponent({
   methods: {
     async handleFilter() {
       const response = await api.get('/employees').then((response) => {
-        return response.data
+        this.$store.dispatch('handleFilterEmployees', response.data);
       }).catch((e) => {
         console.log(e);
       })
-      console.log(response);
     }
   }
 })

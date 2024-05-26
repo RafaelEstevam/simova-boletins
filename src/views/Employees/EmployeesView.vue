@@ -6,17 +6,7 @@
           <employeesFilter />
         </filterComponent>
         <div class="employees__cards">
-          <cardComponent />
-          <cardComponent />
-          <cardComponent />
-          <cardComponent />
-          <cardComponent />
-          <cardComponent />
-          <cardComponent />
-          <cardComponent />
-          <cardComponent />
-          <cardComponent />
-          <cardComponent />
+          <cardComponent v-for="employee in employees" :data="employee" :key="employee.id"/>
         </div>
       </div>
     </defaultTemplate>
@@ -24,7 +14,8 @@
 </template>
 
 <script>
-  import { defineComponent } from 'vue';
+  import { useStore} from 'vuex';
+  import { defineComponent, computed } from 'vue';
 
   import DefaultTemplate from '@/templates/default.template.vue';
   import FilterComponent from '@/components/Filter/filter.component.vue';
@@ -40,8 +31,14 @@
       CardComponent,
       EmployeesFilter
     },
+    setup(){
+      const $store = useStore();
+      const employees = computed(() => $store.state.employees);
+      return {
+        employees
+      }
+    },
     mounted() {
-      console.log('mounted')
     },
   })
 </script>

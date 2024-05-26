@@ -8,91 +8,121 @@
         <div class="bulletins__content__wrapper">
           <div class="bulletins__content__sticky">
             <div class="bulletins__content__sticky__wrapper">
-              <cardComponent />
+              <cardComponent :data="employee" />
             </div>
           </div>
           <div class="bulletins__content__datatable">
             <datatableComponent>
-              <datatableComponentHeader />
-              <datatableComponentContent />
+              <datatableHeaderComponent :columns="columns" />
+              <datatableContentComponent :list="bulletins" :columns="columns" />
             </datatableComponent>
           </div>
         </div>
       </div>
     </defaultTemplate>
 
-    <modalComponent>
+    <!-- <modalComponent>
       <appointmentsModal />
-    </modalComponent>
+    </modalComponent> -->
   </div>
 </template>
 
 <script>
-  import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useStore } from 'vuex';
 
-  import DefaultTemplate from '@/templates/default.template.vue';
-  import FilterComponent from '@/components/Filter/filter.component.vue';
-  import CardComponent from '@/components/Card/card.component.vue';
-  import DatatableComponent from '@/components/Datatable/datatable.component.vue';
-  import ModalComponent from '@/components/Modal/modal.component.vue';
-  import ButtonComponent from '@/components/Button/button.component.vue';
+import DefaultTemplate from '@/templates/default.template.vue';
+import FilterComponent from '@/components/Filter/filter.component.vue';
+import CardComponent from '@/components/Card/card.component.vue';
+import DatatableComponent from '@/components/Datatable/datatable.component.vue';
+import DatatableHeaderComponent from '@/components/Datatable/header.component.vue';
+import DatatableContentComponent from '@/components/Datatable/content.component.vue';
+import ModalComponent from '@/components/Modal/modal.component.vue';
+import ButtonComponent from '@/components/Button/button.component.vue';
 
-  import BulletinsFilter from '@/filters/bulletins.filter.vue';
+import BulletinsFilter from '@/filters/bulletins.filter.vue';
 
-  import AppointmentsModal from '@/modals/appointments.modal.vue';
+import AppointmentsModal from '@/modals/appointments.modal.vue';
 
-  export default defineComponent({
-    name: 'bulletins',
-    components: {
-      DefaultTemplate,
-      FilterComponent,
-      CardComponent,
-      DatatableComponent,
-      ModalComponent,
-      ButtonComponent,
-      BulletinsFilter,
-      AppointmentsModal
-    },
-    mounted() {
-      console.log('mounted')
-    },
-  })
+export default defineComponent({
+  name: 'bulletins',
+  components: {
+    DefaultTemplate,
+    FilterComponent,
+    CardComponent,
+    DatatableComponent,
+    DatatableHeaderComponent,
+    DatatableContentComponent,
+    ModalComponent,
+    ButtonComponent,
+    BulletinsFilter,
+    AppointmentsModal
+  },
+
+  setup() {
+    const $store = useStore();
+    const bulletins = computed(() => $store.state.bulletins);
+    const employee = computed(() => $store.state.employee);
+    return {
+      $store,
+      bulletins,
+      employee
+    }
+  },
+
+  data() {
+    const columns = [
+      { label: 'Id', width: '10%', key: 'id' },
+      { label: 'Id Funcionário', width: '10%', key: 'employeeId' },
+      { label: 'Início', width: '20%', key: 'startDate' },
+      { label: 'Fim', width: '20%', key: 'endDate' },
+      { label: 'Apontamentos', width: '20%', key: 'appointments' },
+    ];
+    return {
+      columns
+    }
+  },
+
+  mounted() {
+    // console.log('mounted')
+  },
+})
 </script>
 
 <style lang="scss">
-  @import '@/styles/tokens.scss';
+@import '@/styles/tokens.scss';
 
-  .bulletins__content__wrapper {
-    display: flex;
-    gap: $spacing-md;
-    position: relative;
+.bulletins__content__wrapper {
+  display: flex;
+  gap: $spacing-md;
+  position: relative;
 
-    &.col{
-      flex-direction: column;
-      width: 100%;
-      max-height: calc(100vh - 200px);
-      overflow-y: scroll;
-      padding: 0 $spacing-md 0 0 ;
-    }
-  }
-
-  .bulletins__content__datatable {
+  &.col {
+    flex-direction: column;
     width: 100%;
+    max-height: calc(100vh - 200px);
+    overflow-y: scroll;
+    padding: 0 $spacing-md 0 0;
   }
+}
 
-  .bulletins__content__sticky {
-    position: relative;
+.bulletins__content__datatable {
+  width: 100%;
+}
 
-    .bulletins__content__sticky__wrapper {
-      position: sticky;
-      top: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 100%;
-      max-height: calc(100vh - 195px);
-      gap: $spacing-md;
+.bulletins__content__sticky {
+  position: relative;
 
-    }
+  .bulletins__content__sticky__wrapper {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    max-height: calc(100vh - 195px);
+    gap: $spacing-md;
+
   }
+}
 </style>

@@ -2,7 +2,7 @@
   <div class="filter">
     <inputComponent />
     <inputComponent />
-    <button type="button" @click="handleFilter">Filrar</button>
+    <button type="button" @click="handleFilter">Filtrar</button>
   </div>
 </template>
 

@@ -2,11 +2,13 @@
   <div class="filter">
     <inputComponent />
     <inputComponent />
-    <button type="button" @click="handleFilter">Filrar</button>
+    <button type="button" @click="handleFilter">Filtrar</button>
   </div>
 </template>
 
 <script>
+
+import {useStore} from 'vuex';
 import api from '@/config/api';
 import { defineComponent } from 'vue';
 import InputComponent from '@/components/Input/input.component.vue';
@@ -18,10 +20,16 @@ export default defineComponent({
     InputComponent,
     ButtonComponent
   },
+  setup(){
+    const $store = useStore();
+    return {
+      $store
+    }
+  },
   methods: {
     async handleFilter() {
       const response = await api.get('/bulletins').then((response) => {
-        return response.data
+        this.$store.dispatch('handleFilterBulletins', response.data);
       }).catch((e) => {
         console.log(e);
       })
