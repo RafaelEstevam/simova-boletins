@@ -1,12 +1,13 @@
 <template>
-  <button>Label</button>
+  <button type="button" @click="$emit('buttonAction')">Label</button>
 </template>
 
 <script>
   import { defineComponent } from 'vue';
 
   export default defineComponent({
-    name: 'buttonComponent'
+    name: 'buttonComponent',
+    emits: ['buttonAction'],
   })
 </script>
 
