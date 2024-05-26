@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/Login/LoginView.vue'
-import DefaultTemplate from '../templates/default.vue';
 import EmployeesView from '../views/Employees/EmployeesView.vue'
 import BulletinsView from '../views/Bulletins/BulletinsView.vue'
 

@@ -10,7 +10,12 @@
   @import '@/styles/tokens.scss';
   
   body{
-    background-color: $primary-color;
+    background-color: $light-color;
+  }
+
+  .view{
+    width: 100%;
+    height: 100vh;
   }
 
 </style>
