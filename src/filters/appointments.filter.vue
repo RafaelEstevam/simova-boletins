@@ -7,7 +7,6 @@
 </template>
 
 <script>
-  import api from '@/config/api';
   import { defineComponent } from 'vue';
   import InputComponent from '@/components/Input/input.component.vue';
   import ButtonComponent from '@/components/Button/button.component.vue';
@@ -19,14 +18,11 @@
       ButtonComponent
     },
 
+    emits:['filterAction'],
+
     methods: {
-      async handleFilter() {
-        const response = await api.get('/appointments').then((response) => {
-          return response.data
-        }).catch((e) => {
-          console.log(e);
-        })
-        console.log(response);
+      handleFilter(){
+        this.$emit('filterAction', {teste: 123})
       }
     }
   })

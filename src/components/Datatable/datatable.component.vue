@@ -1,7 +1,6 @@
 <template>
   <div class="datatable">
-    <datatableHeaderComponent />
-    <datatableContentComponent />
+    <slot></slot>
   </div>
 </template>
 
@@ -17,6 +16,7 @@
       DatatableHeaderComponent,
       DatatableContentComponent
     }
+
   })
 </script>
 

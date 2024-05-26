@@ -1,25 +1,20 @@
 <template>
   <div class="datatable__header">
-    <div class="datatable__column">
-      <b>Header</b>
-    </div>
-    <div class="datatable__column">
-      <b>Header</b>
-    </div>
-    <div class="datatable__column">
-      <b>Header</b>
-    </div>
-    <div class="datatable__column">
-      <b>Header</b>
+    <div v-for="(column, index) in columns" :key="column.label" class="datatable__column" :style="`width: ${column.width}`">
+      <b>{{ column.label }}</b>
     </div>
   </div>
 </template>
 
 <script>
   import { defineComponent } from 'vue';
-
   export default defineComponent({
-    name: 'datatableHeaderComponent'
+    name: 'datatableHeaderComponent',
+    props:{
+      columns:{
+        type: Array
+      },
+    }
   })
 </script>
 
