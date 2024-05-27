@@ -6,7 +6,7 @@
           <bulletinsFilter />
         </filterComponent>
         <div class="bulletins__content__wrapper">
-          <div class="bulletins__content__sticky">
+          <div v-if="employee" class="bulletins__content__sticky">
             <div class="bulletins__content__sticky__wrapper">
               <cardComponent :data="employee" />
             </div>
@@ -24,7 +24,7 @@
     <modalComponent>
       <appointmentsModal />
     </modalComponent>
-    
+
   </div>
 </template>
 
@@ -64,15 +64,14 @@ export default defineComponent({
   setup() {
     const $store = useStore();
     const bulletins = computed(() => $store.state.bulletins);
-    const employee = computed(() => $store.state.employee);
     return {
       $store,
-      bulletins,
-      employee
+      bulletins
     }
   },
 
   data() {
+    const employee = {};
     const columns = [
       { label: 'Id', width: '10%', key: 'id' },
       { label: 'Id Funcionário', width: '10%', key: 'employeeId' },

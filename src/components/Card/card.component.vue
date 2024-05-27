@@ -1,18 +1,20 @@
 <template>
-  <div class="card">
+  <div class="card" @click="handleCardAction(data)">
     <div class="card__header">
-      <p>ID</p>
-      <p>Status</p>
+      <p>{{ data?.id }}</p>
+      <p>{{ data?.active ? 'Ativo' : 'Inativo' }}</p>
     </div>
     <div class="card__content">
       <img src="#" />
-      <h2>Nome do funcionário</h2>
-      <p>Código</p>
+      <h2>{{ data?.name }}</h2>
+      <p>Código: {{ data?.code }}</p>
     </div>
-    <div class="card__footer">
+
+    <div v-if="data?.appointments" class="card__footer">
       <p>Atividade atual</p>
       <p>Almoço</p>
     </div>
+    
   </div>
 </template>
 
@@ -20,7 +22,18 @@
   import { defineComponent } from 'vue';
 
   export default defineComponent({
-    name: 'cardComponent'
+    name: 'cardComponent',
+    props: {
+      data:{
+        type: Object
+      }
+    },
+    emits: ['cardAction'],
+    methods: {
+      handleCardAction(data){
+        this.$emit('cardAction', data)
+      }
+    }
   })
 </script>
 
@@ -36,6 +49,7 @@
     border-radius: $spacing-md;
     border: 1px solid #ccc;
     max-width: 190px;
+    cursor: pointer;
 
     .card__header{
       width: 100%;

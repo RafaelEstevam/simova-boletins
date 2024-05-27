@@ -21,6 +21,12 @@ const router = createRouter({
       name: 'bulletins',
       component: BulletinsView
     },
+    {
+      path: '/bulletins/employees/:employeeId',
+      name: 'bulletinsEmployee',
+      component: BulletinsView,
+      strict: true,
+    },
   ]
 })
 
