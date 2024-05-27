@@ -22,10 +22,9 @@ const router = createRouter({
       component: BulletinsView
     },
     {
-      path: '/bulletins/employees/:employeeId',
+      path: '/employees/:employeeId/bulletins',
       name: 'bulletinsEmployee',
       component: BulletinsView,
-      strict: true,
     },
   ]
 })

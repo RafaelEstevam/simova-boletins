@@ -7,14 +7,14 @@
       <div class="login__wrapper__login">
         <h1>Simova Boletins</h1>
         <p>Área administrativa</p>
-        <buttonComponent />
+        <buttonComponent @buttonAction="handleGoToEmployees" :label="'Acessar painel'" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
+import { useRouter } from 'vue-router';
 import { defineComponent } from 'vue';
 import ButtonComponent from '@/components/Button/button.component.vue';
 
@@ -22,6 +22,17 @@ export default defineComponent({
   name: 'login',
   components: {
     ButtonComponent
+  },
+  setup() {
+    const $router = useRouter();
+    return {
+      $router
+    }
+  },
+  methods: {
+    handleGoToEmployees() {
+      this.$router.push('/employees')
+    }
   }
 })
 

@@ -2,15 +2,16 @@
   <aside class="aside">
     <nav class="aside__nav">
       <ul class="aside__nav__menu">
-        <li><a href="#">L1</a></li>
-        <li><a href="#">L2</a></li>
+        <li><a href="/employees">Funcionários</a></li>
+        <li><a href="/bulletins">Boletins</a></li>
       </ul>
     </nav>
-    <buttonComponent />
+    <buttonComponent @buttonAction="handleGoToLogin" :label="'Logout'"/>
   </aside>
 </template>
 
 <script>
+  import {useRouter} from 'vue-router';
   import { defineComponent } from 'vue';
 
   import ButtonComponent from '../Button/button.component.vue';
@@ -19,6 +20,17 @@
     name: 'sideBarComponent',
     components: {
       ButtonComponent
+    },
+    setup() {
+      const $router = useRouter();
+      return {
+        $router
+      }
+    },
+    methods:{
+      handleGoToLogin(){
+        this.$router.push('/')
+      }
     }
   })
 </script>

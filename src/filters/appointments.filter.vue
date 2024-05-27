@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import { getAppointments } from '@/services/appointments.service'
+
 import { useStore } from 'vuex';
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
 import InputComponent from '@/components/Input/input.component.vue';
 import ButtonComponent from '@/components/Button/button.component.vue';
 
@@ -21,32 +21,32 @@ export default defineComponent({
   },
   setup(){  
     const $store = useStore();
+    const appointments = computed(() => $store.getters.getAppointments)
     return {
-      $store
+      $store,
+      appointments
     }
   },
   data(){
     const code = '';
     return {
-      code,
+      code
     }
   },
 
+  emits: ['filterAction'],
+
   methods: {
-    async handleFilter() {
+    handleFilter() {
       const data = {
-        code: this.code,
-      }
-      getAppointments(data, (response) => this.$store.dispatch('handleFilterAppointments', response))
-
-      // console.log(data);
-
-      // const response = await api.get('/appointments').then((response) => {
-      //   this.$store.dispatch('handleFilterAppointments', response.data)
-      // }).catch((e) => {
-      //   console.log(e);
-      // })
-    }
-  }
+        code: this.code
+      };
+      this.$emit('filterAction', data)
+    },
+  },
+  mounted() {
+    // console.log(this.appointments);
+    // this.handleDoDefaultFilter();
+  },
 })
 </script>

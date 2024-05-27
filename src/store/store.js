@@ -5,6 +5,7 @@ export const store = createStore({
     return {
       appointments: [],
       bulletins: [],
+      consolidatedBulletins: [],
       employees: [],
       employee: {}
     }
@@ -16,6 +17,9 @@ export const store = createStore({
     },
     setBulletins(state, payload){
       state.bulletins = payload
+    },
+    setConsolidatedBulletins(state, payload){
+      state.consolidatedBulletins = payload
     },
     setEmployee(state, payload){
       state.employee = payload
@@ -32,6 +36,9 @@ export const store = createStore({
     handleFilterBulletins({ commit }, bulletins) {
       commit('setBulletins', bulletins);
     },
+    handleSetConsolidatedBulletins({ commit }, consolidatedBulletins) {
+      commit('setConsolidatedBulletins', consolidatedBulletins);
+    },
     handleSetEmployee({commit}, employee){
       commit('setEmployee', employee);
     },
@@ -46,6 +53,9 @@ export const store = createStore({
     },
     getBulletins: (state) => {
       return state.bulletins
+    },
+    getConsolidatedBulletins: (state) => {
+      return state.consolidatedBulletins
     },
     getEmployee: (state) => {
       return state.employee

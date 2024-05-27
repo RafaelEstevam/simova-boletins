@@ -175,27 +175,6 @@
             "code": "7",
             "active": true,
             "image": "https://raw.githubusercontent.com/daltondiaz/test-frontend/main/assets/images/employee4.png"
-        },
-        {
-            "id": 5,
-            "name": "Employee 10",
-            "code": "7",
-            "active": false,
-            "image": "https://raw.githubusercontent.com/daltondiaz/test-frontend/main/assets/images/employee4.png"
-        },
-        {
-            "id": 6,
-            "name": "Employee 16",
-            "code": "7",
-            "active": true,
-            "image": "https://raw.githubusercontent.com/daltondiaz/test-frontend/main/assets/images/employee4.png"
-        },
-        {
-            "id": 7,
-            "name": "Employee 17",
-            "code": "7",
-            "active": false,
-            "image": "https://raw.githubusercontent.com/daltondiaz/test-frontend/main/assets/images/employee4.png"
         }
     ]
 }

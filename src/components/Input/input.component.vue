@@ -1,5 +1,5 @@
 <template>
-  <input :name="inputName" :id="inputName" :placeholder="placeholder" :value="value" :required="required"
+  <input :name="inputName" :id="inputName" :placeholder="placeholder" :value="value" :required="required" :readonly="readonly"
     @input="$emit('update:modelValue', $event.target.value)" />
 </template>
 
@@ -24,6 +24,10 @@ export default defineComponent({
       type: String
     },
     required: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     }

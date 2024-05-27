@@ -43,10 +43,8 @@
     },
     methods:{
       handleCardAction(card){
-        this.$router.push(`/bulletins/employees/${card.id}`);
+        this.$router.push(`/employees/${card.id}/bulletins`);
       }
-    },
-    mounted() {
     },
   })
 </script>

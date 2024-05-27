@@ -1,5 +1,5 @@
 <template>
-  <button type="button" @click="$emit('buttonAction')">Label</button>
+  <button type="button" @click="$emit('buttonAction')">{{ label }}</button>
 </template>
 
 <script>
@@ -8,6 +8,11 @@
   export default defineComponent({
     name: 'buttonComponent',
     emits: ['buttonAction'],
+    props: {
+      label: {
+        type: String
+      }
+    }
   })
 </script>
 

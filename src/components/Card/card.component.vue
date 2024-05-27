@@ -48,7 +48,7 @@
     padding: $spacing-md;
     border-radius: $spacing-md;
     border: 1px solid #ccc;
-    max-width: 190px;
+    max-width: 180px;
     cursor: pointer;
 
     .card__header{

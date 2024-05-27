@@ -2,13 +2,13 @@
   <div class="appointments__modal__content__wrapper">
     <div class="appointments__modal__content__sticky">
       <div class="appointments__modal__content__sticky__wrapper">
-        <cardComponent />
-        <buttonComponent />
+        <cardComponent :data="employee" />
+        <buttonComponent :label="'Fechar'" @buttonAction="handleCloseModal"/>
       </div>
     </div>
     <div class="appointments__modal__content__wrapper col">
       <filterComponent>
-        <appointmentsFilter />
+        <appointmentsFilter @filterAction="handleFilter" />
       </filterComponent>
       <div class="appointments__modal__content__datatable">
         <datatableComponent>
@@ -21,9 +21,10 @@
 </template>
 
 <script>
-// import api from '@/config/api';
-import {useStore} from 'vuex';
+import moment from 'moment';
+import { useStore } from 'vuex';
 import { defineComponent, computed } from 'vue';
+import { getEmployees } from '@/services/employees.service';
 
 import FilterComponent from '@/components/Filter/filter.component.vue';
 import CardComponent from '@/components/Card/card.component.vue';
@@ -45,32 +46,61 @@ export default defineComponent({
     CardComponent,
     ButtonComponent
   },
-  setup(){
+  props: {
+    data: {
+      type: Object
+    }
+  },
+  emits: ['closeModal'],
+  setup() {
     const $store = useStore();
-    const appointments = computed(() => $store.state.appointments);
-    return{
-      appointments
+    const consolidatedAppointments = computed(() => $store.getters.getAppointments);
+    return {
+      consolidatedAppointments,
+      $store
     }
   },
   data() {
+    const modalDetails = this.data;
+    const appointments = modalDetails.appointmentsList;
+    const employee = {};
+
     const columns = [
-      { label: 'Id', width: '10%', key:'id' },
-      { label: 'Código', width: '10%', key:'code' },
-      { label: 'Descrição', width: '60%', key:'description' },
-      { label: 'Cor', width: '20%', key:'color' },
+      { label: 'Id', width: '10%', key: 'id' },
+      { label: 'Cor', width: '10%', key: 'color', isElement: true, element: (e) => `<div class="appointments__modal__content__datatable__color" style="background: ${e}"></div>` },
+      { label: 'Código', width: '10%', key: 'code' },
+      { label: 'Descrição', width: '50%', key: 'description' },
+      { label: 'Data', width: '20%', key: 'date', data: (d) => moment(new Date(d.replace(' ', 'T'))).format('DD/MM/YYYY hh:mm:ss') },
     ];
+
     return {
-      columns
+      columns,
+      appointments,
+      employee,
+      modalDetails
     }
   },
+  created() {
+    this.$store.dispatch('handleFilterAppointments', this.data.appointmentsList);
+  },
   methods: {
-    // async handleFilter(body) {
-    //   const response = await api.get('/appointments').then((response) => {
-    //     this.list = response.data;
-    //   }).catch((e) => {
-    //     console.log(e);
-    //   })
-    // }
+    handleFilter(data) {
+      if (data.code !== '') {
+        this.appointments = this.consolidatedAppointments.filter((appointment) => appointment.code == data.code);
+      } else {
+        this.appointments = this.consolidatedAppointments;
+      }
+    },
+    handleCloseModal(){
+      this.$emit('closeModal');
+    }
+  },
+  mounted() {
+    const data = {
+      id: this.modalDetails.employeeId
+    };
+
+    getEmployees(data, (response) => this.employee = response[0])
   }
 })
 </script>
@@ -96,6 +126,12 @@ export default defineComponent({
   width: 100%;
 }
 
+.appointments__modal__content__datatable__color {
+  width: $spacing-xl;
+  height: $spacing-xl;
+  border-radius: $spacing-md;
+}
+
 .appointments__modal__content__sticky {
   position: relative;
 
@@ -104,11 +140,9 @@ export default defineComponent({
     top: 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: 100%;
     max-height: calc(100vh - 195px);
     gap: $spacing-md;
-
   }
 }
 </style>
