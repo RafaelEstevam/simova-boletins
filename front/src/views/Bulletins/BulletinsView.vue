@@ -24,7 +24,7 @@
     </defaultTemplate>
 
     <modalComponent v-if="showModal">
-      <appointmentsModal :data="modalData" @closeModal="handleCloseModal" />
+      <appointmentsModal :modalData="modalData" @closeModal="handleCloseModal" />
     </modalComponent>
 
   </div>
@@ -73,7 +73,7 @@ export default defineComponent({
     const $store = useStore();
     const $route = useRoute();
     const userId = computed(() => $route.params.employeeId);
-    const bulletins = computed(() => $store.state.bulletins);
+    const bulletins = computed(() => $store.getters.getBulletins);
     const showModal = ref(false);
 
     return {

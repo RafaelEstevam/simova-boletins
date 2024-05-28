@@ -51,16 +51,16 @@ export default defineComponent({
         name: this.employeeName,
         active: this.employeeActive
       }
-      getEmployees(data, (response) => this.$store.dispatch('handleFilterEmployees', response))
+      await getEmployees(data, (response) => this.$store.dispatch('handleFilterEmployees', response))
     },
-    handleDoDefaultFilter() {
+    async handleDoDefaultFilter() {
       this.employeeName = '';
       this.employeeActive = null;
-      this.handleFilter('default')
+      await this.handleFilter('default')
     }
   },
-  mounted() {
-    this.handleDoDefaultFilter();
+  async mounted() {
+    await this.handleDoDefaultFilter();
   }
 })
 </script>

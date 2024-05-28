@@ -8,7 +8,7 @@
     </div>
     <div class="appointments__modal__content__wrapper col">
       <filterComponent>
-        <appointmentsFilter />
+        <appointmentsFilter :filterData="modalData" />
       </filterComponent>
       <div class="appointments__modal__content__datatable">
         <datatableComponent>
@@ -47,7 +47,7 @@ export default defineComponent({
     ButtonComponent
   },
   props: {
-    data: {
+    modalData: {
       type: Object
     }
   },
@@ -56,18 +56,15 @@ export default defineComponent({
 
   setup() {
     const $store = useStore();
-    const consolidatedAppointments = computed(() => $store.getters.getAppointments);
+    const appointments = computed(() => $store.state.appointments);
     return {
-      consolidatedAppointments,
+      appointments,
       $store
     }
   },
 
   data() {
-    const modalDetails = this.data;
-    const appointments = modalDetails.appointmentsList;
     const employee = {};
-
     const columns = [
       { label: 'Id', width: '10%', key: 'id' },
       { label: 'Cor', width: '10%', key: 'color', isElement: true, element: (e) => `<div class="appointments__modal__content__datatable__color" style="background: ${e}"></div>` },
@@ -78,16 +75,14 @@ export default defineComponent({
 
     return {
       columns,
-      appointments,
       employee,
-      modalDetails
     }
   },
   
   methods: {
     async handleGetEmployeeById(){
       const data = {
-        id: this.modalDetails.employeeId
+        id: this.modalData.employeeId
       };
       await getEmployeeById(data, (response) => this.employee = response);
     },
@@ -97,6 +92,7 @@ export default defineComponent({
   },
   async mounted() {
     await this.handleGetEmployeeById()
+    this.$store.dispatch('handleFilterAppointments', this.modalData.appointmentsList)
   }
 })
 </script>
