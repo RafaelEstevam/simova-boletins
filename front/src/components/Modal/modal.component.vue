@@ -24,18 +24,18 @@
     z-index: 1;
     height: 100%;
     width: 100%;
-    background-color: $overlay-color;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: $overlay-color;
+    padding: $spacing-md;
   }
 
   .modal__wrapper{
-    background-color: $white-color;
+    background-color: $light-color;
     padding: $spacing-md;
     border-radius: $spacing-md;
     min-width: 75%;
-    min-height: 75%;
   }
 
 </style>

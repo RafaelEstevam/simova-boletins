@@ -40,10 +40,6 @@
         type: String
       }
     },
-    mounted() {
-      console.log(this.$props)
-      console.log('mounted')
-    },
   })
 </script>
 

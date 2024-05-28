@@ -3,10 +3,11 @@
     <div class="appointments__modal__content__sticky">
       <div class="appointments__modal__content__sticky__wrapper">
         <cardComponent :data="employee" />
-        <buttonComponent :label="'Fechar'" @buttonAction="handleCloseModal"/>
+        <buttonComponent :label="'Fechar'" @buttonAction="handleCloseModal" :color="'danger'" :variant="'filled'"
+          :type="'button'" />
       </div>
     </div>
-    <div class="appointments__modal__content__wrapper col">
+    <div class="appointments__modal__content__wrapper appointments__modal__content">
       <filterComponent>
         <appointmentsFilter :filterData="modalData" />
       </filterComponent>
@@ -51,7 +52,7 @@ export default defineComponent({
       type: Object
     }
   },
-  
+
   emits: ['closeModal'],
 
   setup() {
@@ -72,21 +73,20 @@ export default defineComponent({
       { label: 'Descrição', width: '50%', key: 'description' },
       { label: 'Data', width: '20%', key: 'date', data: (d) => moment(new Date(d.replace(' ', 'T'))).format('DD/MM/YYYY hh:mm:ss') },
     ];
-
     return {
       columns,
       employee,
     }
   },
-  
+
   methods: {
-    async handleGetEmployeeById(){
+    async handleGetEmployeeById() {
       const data = {
         id: this.modalData.employeeId
       };
       await getEmployeeById(data, (response) => this.employee = response);
     },
-    handleCloseModal(){
+    handleCloseModal() {
       this.$emit('closeModal');
     }
   },
@@ -104,13 +104,21 @@ export default defineComponent({
   display: flex;
   gap: $spacing-md;
   position: relative;
+  height: 100%;
 
-  &.col {
+  &.appointments__modal__content {
     flex-direction: column;
     width: 100%;
-    max-height: calc(100vh - 200px);
-    overflow-y: scroll;
-    padding: 0 $spacing-md 0 0;
+    max-height: 75vh;
+    overflow-y: auto;
+    background: $white-color;
+    padding: $spacing-md;
+    border-radius: $spacing-md;
+    box-shadow: 0px 4px 0px #c5c5cc;
+  }
+
+  @media(max-width: $screen-sm) {
+    flex-direction: column-reverse;
   }
 }
 
@@ -126,6 +134,7 @@ export default defineComponent({
 
 .appointments__modal__content__sticky {
   position: relative;
+  width: fit-content;
 
   .appointments__modal__content__sticky__wrapper {
     position: sticky;
@@ -133,8 +142,17 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     height: 100%;
+    justify-content: space-between;
     max-height: calc(100vh - 195px);
     gap: $spacing-md;
+
+    .card {
+      @media(max-width: $screen-sm) {
+        display: none;
+      }
+    }
+
+
   }
 }
 </style>

@@ -10,7 +10,7 @@
         </li>
       </ul>
     </nav>
-    <buttonComponent @buttonAction="handleGoToLink('/')" :color="'danger'" :variant="'outlined'" :type="'button'"
+    <buttonComponent @buttonAction="handleGoToLink('/')" :color="'danger'" :variant="'outlined'" :type="'button'" :fullwidth="true"
       :label="'Logout'" />
   </aside>
 </template>

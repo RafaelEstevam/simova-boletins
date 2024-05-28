@@ -9,8 +9,8 @@
           <div v-if="employee && employee.id" class="bulletins__content__sticky">
             <div class="bulletins__content__sticky__wrapper">
               <cardComponent :data="employee" />
-              <buttonComponent @buttonAction="handleGoToEmployees" :label="'Ver Funcionários'" />
-              <buttonComponent @buttonAction="handleGoToBulletins" :label="'Ver Boletins'" />
+              <!-- <buttonComponent @buttonAction="handleGoToEmployees" :label="'Ver Funcionários'" :color="'primary'" :variant="'outlined'" :type="'button'" :size="'sm'" /> -->
+              <!-- <buttonComponent @buttonAction="handleGoToBulletins" :label="'Ver Boletins'" :color="'primary'" :variant="'outlined'" :type="'button'" :size="'sm'" /> -->
             </div>
           </div>
           <div class="bulletins__content__datatable">
@@ -95,7 +95,7 @@ export default defineComponent({
       { label: 'Nome', width: '10%', key:'employee', data: (e) => e.name},
       { label: 'Início', width: '20%', key: 'startDate', data: (d) => moment(new Date(d.replace(' ', 'T'))).format('DD/MM/YYYY hh:mm:ss') },
       { label: 'Fim', width: '20%', key: 'endDate', data: (d) => moment(new Date(d.replace(' ', 'T'))).format('DD/MM/YYYY hh:mm:ss') },
-      { label: 'Total', width: '20%', key: 'totalHours' },
+      { label: 'Total em Horas', width: '20%', key: 'totalHours' },
       {
         label: 'Ver apontamentos', width: '20%', key: 'appointments', actions:
           [
@@ -183,6 +183,10 @@ export default defineComponent({
     height: 100%;
     max-height: calc(100vh - 195px);
     gap: $spacing-md;
+  }
+
+  @media(max-width: $screen-md){
+    display: none;
   }
 }
 </style>

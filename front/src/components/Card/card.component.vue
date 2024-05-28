@@ -52,8 +52,8 @@ export default defineComponent({
   gap: $spacing-md;
   padding: $spacing-md;
   border-radius: $spacing-md;
-  width: 100%;
   max-width: 200px;
+  min-width: 200px;
   cursor: pointer;
   background: $light-color;
 

@@ -34,7 +34,9 @@ export default defineComponent({
     background-color: $white-color;
     padding: $spacing-md;
     max-height: calc(100vh - 96px);
-    overflow-y: scroll;
+    overflow-y: auto;
+    box-shadow: 0px 4px 0px #c5c5cc;
+    
     @media(max-width: $screen-sm){
       height: 100%;
       border-radius: $spacing-md ;

@@ -30,7 +30,10 @@
     gap: $spacing-md;
 
     .datatable__column{
+      width: 100%;
       padding: $spacing-md;
+      display: flex;
+      align-items: center;
     }
   }
 

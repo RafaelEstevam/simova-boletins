@@ -60,7 +60,7 @@ export default defineComponent({
   border: 0px;
   border-radius: $spacing-md;
   padding: 14px $spacing-md;
-  background-color: $light-color;
+  background-color: $white-color;
   width: 100%;
 }
 </style>

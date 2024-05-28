@@ -49,16 +49,12 @@ export default defineComponent({
         code: this.code
       };
       if(data.code !== ''){
-        const newAppointmentsList = this.filterData.appointmentsList.filter((appointment) => appointment.activity.code == data.code);
+        const newAppointmentsList = this.filterData.appointmentsList.filter((appointment) => appointment.code == data.code);
         this.$store.dispatch('handleFilterAppointments', newAppointmentsList);
       }else{
         this.$store.dispatch('handleFilterAppointments', this.filterData.appointmentsList);
       }
     },
   },
-
-  mounted(){
-    console.log(this.filterData)
-  }
 })
 </script>

@@ -10,8 +10,8 @@ const consolidatedBulletins = () => {
     const employee = db.employees.find((employee) => bulletin.employeeId === employee.id);
     const appointmentsList = bulletin.appointments.map((appointment) => {
       const activity = activities.find((activity) => appointment.activityId === activity.id);
-      appointment.activity = activity;
-      return appointment;
+      appointment.appointmentId = appointment.id;
+      return {...appointment, ...activity};
     });
     bulletin.employee = employee;
     bulletin.appointmentsList = appointmentsList;
