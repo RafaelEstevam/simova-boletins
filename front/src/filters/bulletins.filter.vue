@@ -1,10 +1,10 @@
 <template>
   <div class="filter">
-    <inputComponent v-if="!userId" :inputName="'employeeName'" :inputValue="employeeName" :placeholder="'Nome do funcionário'"
-      :required="true" :readonly="readonly" v-model="employeeName" />
+    <inputComponent v-if="!userId" :inputName="'employeeName'" :inputValue="employeeName"
+      :placeholder="'Nome do funcionário'" :required="true" :readonly="readonly" v-model="employeeName" />
     <inputComponent :inputName="'totalHours'" :inputValue="totalHours" :placeholder="'Total de horas'" :required="true"
       v-model="totalHours" />
-    <button type="button" @click="handleFilter">Filtrar</button>
+    <button type="button" @click="handleDoDefaultFilter">Filtrar</button>
   </div>
 </template>
 
@@ -12,7 +12,7 @@
 
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
-import { getBulletins } from '@/services/bulletins.service';
+import { getBulletins, getBulletinsByEmployeeId } from '@/services/bulletins.service';
 
 import { defineComponent, computed } from 'vue';
 import InputComponent from '@/components/Input/input.component.vue';
@@ -28,7 +28,6 @@ export default defineComponent({
   setup() {
     const $route = useRoute();
     const $store = useStore();
-
     const userId = computed(() => $route.params.employeeId);
     const bulletins = computed(() => $store.state.bulletins);
     const employee = computed(() => $store.state.employee);
@@ -44,49 +43,66 @@ export default defineComponent({
 
     const employeeId = this.employee.id || this.userId;
     const employeeName = '';
-    const startDate = '';
-    const endDate = '';
     const totalHours = '';
     const readonly = this.userId && true;
+    const employeeBulletins = [];
 
     return {
       employeeId,
       employeeName,
-      startDate,
-      endDate,
       totalHours,
-      readonly
+      readonly,
+      employeeBulletins
     }
   },
 
-  watch: {
-    userId(n, o) {
-      if (n === undefined) {
-        this.handleFilter();
-        this.employeeId = '';
-        this.employeeName = '';
-        this.readonly = false;
-        this.$store.dispatch('handleSetEmployee', {});
-      }
-      if (n) {
-        this.handleFilter()
-      }
-    },
-  },
+  // watch: {
+  //   userId(n, o) {
+  //     if (n === undefined) {
+  //       this.handleFilter();
+  //       this.employeeId = '';
+  //       this.employeeName = '';
+  //       this.readonly = false;
+  //       this.$store.dispatch('handleSetEmployee', {});
+  //     }
+  //     if (n) {
+  //       this.handleFilter()
+  //     }
+  //   },
+  // },
   methods: {
-    async handleFilter() {
+    async handleFilterBullets() {
       const data = {
         name: this.employeeName,
         totalHours: this.totalHours
       }
-      getBulletins(data, (response) => this.$store.dispatch('handleFilterBulletins', response))
+      await getBulletins(data, (response) => this.$store.dispatch('handleFilterBulletins', response))
+    },
+    async handleFilterBulletinsByEmployeeId() {
+      const data = {
+        id: this.employeeId
+      }
+      await getBulletinsByEmployeeId(data, (response) => this.employeeBulletins = response);
+      this.handleSetBulletsOnStore();
     },
     async handleDoDefaultFilter() {
-      await this.handleFilter();
+      if (this.employeeId) {
+        this.handleFilterBulletinsByEmployeeId()
+      } else {
+        this.handleFilterBullets();
+      }
     },
+    handleSetBulletsOnStore(){
+      if(this.totalHours !== ''){
+        const newBulletins = this.employeeBulletins.filter((employeeBulletin) => employeeBulletin.totalHours == this.totalHours);
+        this.$store.dispatch('handleFilterBulletins', newBulletins)
+      }else{
+        this.$store.dispatch('handleFilterBulletins', this.employeeBulletins)
+      }
+    }
   },
   async mounted() {
-    this.handleDoDefaultFilter();
+    await this.handleDoDefaultFilter()
   },
 
 })
