@@ -8,7 +8,7 @@
     </div>
     <div class="appointments__modal__content__wrapper col">
       <filterComponent>
-        <appointmentsFilter @filterAction="handleFilter" />
+        <appointmentsFilter />
       </filterComponent>
       <div class="appointments__modal__content__datatable">
         <datatableComponent>
@@ -24,7 +24,7 @@
 import moment from 'moment';
 import { useStore } from 'vuex';
 import { defineComponent, computed } from 'vue';
-import { getEmployees } from '@/services/employees.service';
+import { getEmployeeById } from '@/services/employees.service';
 
 import FilterComponent from '@/components/Filter/filter.component.vue';
 import CardComponent from '@/components/Card/card.component.vue';
@@ -51,7 +51,9 @@ export default defineComponent({
       type: Object
     }
   },
+  
   emits: ['closeModal'],
+
   setup() {
     const $store = useStore();
     const consolidatedAppointments = computed(() => $store.getters.getAppointments);
@@ -60,6 +62,7 @@ export default defineComponent({
       $store
     }
   },
+
   data() {
     const modalDetails = this.data;
     const appointments = modalDetails.appointmentsList;
@@ -80,15 +83,20 @@ export default defineComponent({
       modalDetails
     }
   },
-  created() {
-    this.$store.dispatch('handleFilterAppointments', this.data.appointmentsList);
-  },
+  
   methods: {
+    async handleGetEmployeeById(){
+      const data = {
+        id: this.modalDetails.employeeId
+      };
+      await getEmployeeById(data, (response) => this.employee = response);
+    },
     handleCloseModal(){
       this.$emit('closeModal');
     }
   },
-  mounted() {
+  async mounted() {
+    await this.handleGetEmployeeById()
   }
 })
 </script>

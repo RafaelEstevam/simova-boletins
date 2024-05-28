@@ -34,14 +34,11 @@ export default defineComponent({
     }
   },
 
-  emits: ['filterAction'],
-
   methods: {
     handleFilter() {
       const data = {
         code: this.code
       };
-      this.$emit('filterAction', data)
     },
   },
   mounted() {

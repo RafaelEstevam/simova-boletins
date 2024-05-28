@@ -41,35 +41,23 @@ export default defineComponent({
   },
   data() {
 
-    const employeeId = this.employee.id || this.userId;
     const employeeName = '';
     const totalHours = '';
-    const readonly = this.userId && true;
     const employeeBulletins = [];
 
     return {
-      employeeId,
       employeeName,
       totalHours,
-      readonly,
       employeeBulletins
     }
   },
 
-  // watch: {
-  //   userId(n, o) {
-  //     if (n === undefined) {
-  //       this.handleFilter();
-  //       this.employeeId = '';
-  //       this.employeeName = '';
-  //       this.readonly = false;
-  //       this.$store.dispatch('handleSetEmployee', {});
-  //     }
-  //     if (n) {
-  //       this.handleFilter()
-  //     }
-  //   },
-  // },
+  watch:{
+    userId(n, o){
+      this.handleDoDefaultFilter()
+    },
+  },
+  
   methods: {
     async handleFilterBullets() {
       const data = {
@@ -80,13 +68,13 @@ export default defineComponent({
     },
     async handleFilterBulletinsByEmployeeId() {
       const data = {
-        id: this.employeeId
+        id: this.userId
       }
       await getBulletinsByEmployeeId(data, (response) => this.employeeBulletins = response);
       this.handleSetBulletsOnStore();
     },
     async handleDoDefaultFilter() {
-      if (this.employeeId) {
+      if (this.userId) {
         this.handleFilterBulletinsByEmployeeId()
       } else {
         this.handleFilterBullets();

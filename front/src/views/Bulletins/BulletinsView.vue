@@ -50,7 +50,7 @@ import BulletinsFilter from '@/filters/bulletins.filter.vue';
 
 import AppointmentsModal from '@/modals/appointments.modal.vue';
 
-import { getEmployees } from '@/services/employees.service';
+import { getEmployeeById } from '@/services/employees.service';
 
 export default defineComponent({
   name: 'bulletins',
@@ -88,6 +88,7 @@ export default defineComponent({
   data() {
     const modalData = {};
     const employee = {};
+    const employeeId = this.userId;
     const columns = [
       { label: 'Id', width: '10%', key: 'id' },
       { label: 'Id Funcionário', width: '10%', key: 'employeeId' },
@@ -105,7 +106,8 @@ export default defineComponent({
     return {
       columns,
       employee,
-      modalData
+      modalData,
+      employeeId
     }
   },
 
@@ -134,11 +136,17 @@ export default defineComponent({
     handleCloseModal() {
       this.showModal = false
     },
-    handleGetEmployeeById() {
-    }
+    async handleGetEmployeeById(){
+      const data = {
+        id: this.employeeId
+      };
+      await getEmployeeById(data, (response) => this.employee = response);
+    },
   },
-  mounted() {
-    this.handleGetEmployeeById()
+  async mounted() {
+    if(this.employeeId){
+      await this.handleGetEmployeeById()
+    }
   }
 })
 </script>
