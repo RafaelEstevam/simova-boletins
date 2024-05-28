@@ -1,6 +1,6 @@
 <template>
   <div class="bulletins view">
-    <defaultTemplate :title="`Boletins ${employee.name || ''}`">
+    <defaultTemplate :title="'Boletins'" :subtitle="employee.name">
       <div class="content bulletins__content">
         <filterComponent>
           <bulletinsFilter />

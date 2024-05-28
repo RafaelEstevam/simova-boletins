@@ -2,7 +2,7 @@
   <div class="filter">
     <inputComponent :inputName="'code'" :inputValue="code" :placeholder="'Código da atividade'"
       :required="true" v-model="code"/>
-    <button type="button" @click="handleFilter">Filtrar</button>
+    <buttonComponent @buttonAction="handleFilter" :color="'primary'" :variant="'filled'" :type="'button'" :label="'Filtrar'"/>
   </div>
 </template>
 

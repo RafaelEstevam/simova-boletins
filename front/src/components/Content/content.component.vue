@@ -20,6 +20,9 @@ export default defineComponent({
     flex-direction: column;
     width: 100%;
     gap: $spacing-md;
+    @media(max-width: $screen-md){
+      height: 100%;
+    }
   }
 
   .content__slot{
@@ -32,5 +35,11 @@ export default defineComponent({
     padding: $spacing-md;
     max-height: calc(100vh - 96px);
     overflow-y: scroll;
+    @media(max-width: $screen-sm){
+      height: 100%;
+      border-radius: $spacing-md ;
+      order: 0;
+      max-height: calc(100vh - 170px);
+    }
   }
 </style>

@@ -4,7 +4,7 @@
     <div class="default__template__wrapper">
       <sideBarComponent />
       <contentComponent>
-        <titleComponent :title="title"/>
+        <titleComponent :title="title" :subtitle="subtitle"/>
         <div>
           <slot></slot>
         </div>
@@ -33,10 +33,15 @@
     },
     props: {
       title:{
-        default: 'teste'
+        default: 'teste',
+        type: String
+      },
+      subtitle: {
+        type: String
       }
     },
     mounted() {
+      console.log(this.$props)
       console.log('mounted')
     },
   })
@@ -56,5 +61,9 @@
     height: 100%;
     display: flex;
     padding-bottom: $spacing-md;
+    @media(max-width: $screen-sm){
+      flex-direction: column;
+      padding: $spacing-md;
+    }
   }
 </style>

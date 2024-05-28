@@ -4,7 +4,8 @@
       :placeholder="'Nome do funcionário'" :required="true" :readonly="readonly" v-model="employeeName" />
     <inputComponent :inputName="'totalHours'" :inputValue="totalHours" :placeholder="'Total de horas'" :required="true"
       v-model="totalHours" />
-    <button type="button" @click="handleDoDefaultFilter">Filtrar</button>
+    <buttonComponent @buttonAction="handleDoDefaultFilter" :color="'primary'" :variant="'filled'"
+      :type="'button'" :label="'Filtrar'" />
   </div>
 </template>
 
@@ -52,12 +53,12 @@ export default defineComponent({
     }
   },
 
-  watch:{
-    userId(n, o){
+  watch: {
+    userId(n, o) {
       this.handleDoDefaultFilter()
     },
   },
-  
+
   methods: {
     async handleFilterBullets() {
       const data = {
@@ -80,11 +81,11 @@ export default defineComponent({
         this.handleFilterBullets();
       }
     },
-    handleSetBulletsOnStore(){
-      if(this.totalHours !== ''){
+    handleSetBulletsOnStore() {
+      if (this.totalHours !== '') {
         const newBulletins = this.employeeBulletins.filter((employeeBulletin) => employeeBulletin.totalHours == this.totalHours);
         this.$store.dispatch('handleFilterBulletins', newBulletins)
-      }else{
+      } else {
         this.$store.dispatch('handleFilterBulletins', this.employeeBulletins)
       }
     }

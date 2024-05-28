@@ -1,13 +1,19 @@
 <template>
   <div class="login view">
-    <div class="login__img">
-      <img src="#" />
-    </div>
+    <div class="login__img" :style="backgroundImageStyle"></div>
     <div class="login__wrapper">
       <div class="login__wrapper__login">
-        <h1>Simova Boletins</h1>
-        <p>Área administrativa</p>
-        <buttonComponent @buttonAction="handleGoToEmployees" :label="'Acessar painel'" />
+        <logoComponent :horizontal="true" :white="true" />
+        <div class="login__wrapper__access">
+          <h2 class="login__wrapper__access__text">Acesso administrativo</h2>
+          <buttonComponent
+            @buttonAction="handleGoToEmployees"
+            :label="'Acessar painel'"
+            :color="'white'"
+            :variant="'outlined'"
+            :type="'button'"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -17,11 +23,15 @@
 import { useRouter } from 'vue-router';
 import { defineComponent } from 'vue';
 import ButtonComponent from '@/components/Button/button.component.vue';
+import LogoComponent from '@/components/Logo/logo.component.vue';
+import banner1 from '@/assets/banner-1.jpg';
+import banner2 from '@/assets/banner-2.png';
 
 export default defineComponent({
   name: 'login',
   components: {
-    ButtonComponent
+    ButtonComponent,
+    LogoComponent
   },
   setup() {
     const $router = useRouter();
@@ -29,6 +39,23 @@ export default defineComponent({
       $router
     }
   },
+  data() {
+    const img1 = banner1;
+    const img2 = banner2;
+    return {
+      img1,
+      img2
+    }
+  },
+
+  computed: {
+    backgroundImageStyle() {
+      return {
+        backgroundImage: `url(${this.img1})`
+      };
+    }
+  },
+
   methods: {
     handleGoToEmployees() {
       this.$router.push('/employees')
@@ -42,11 +69,19 @@ export default defineComponent({
 @import '@/styles/tokens.scss';
 
 .login {
+  width: 100%;
   display: flex;
 }
 
 .login__img {
   width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: right;
+  box-shadow: 0px -100px 200px #000000 inset;
+  @media(max-width: $screen-sm){
+    display: none;
+  }
 }
 
 .login__wrapper {
@@ -56,12 +91,29 @@ export default defineComponent({
   display: flex;
   justify-content: center;
   align-items: center;
+  border-left: 4px solid $danger-color;
+  // box-shadow: 0px 0px 100px $danger-color inset;
+
+  @media(max-width: $screen-sm){
+    width: 100%;
+  }
 }
 
 .login__wrapper__login {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: $spacing-lg;
+}
+
+.login__wrapper__access{
+  display: flex;
+  flex-direction: column;
   gap: $spacing-md;
+}
+
+.login__wrapper__access__text{
+  color: $dark-color;
+  font-weight: 800;
 }
 </style>

@@ -19,16 +19,24 @@
   .filter{
     display: flex;
     gap: $spacing-md;
+
+    @media(max-width: $screen-sm){
+      flex-direction: column;
+      width: 100%;
+    }
   }
 
   .filter__wrapper{
     width: 100%;
-    border: 1px solid #ccc;
     display: flex;
     align-items: center;
     gap: $spacing-md;
     border-radius: $spacing-md;
     padding: $spacing-md;
+    background-color: $primary-color-light;
+    @media(max-width: $screen-sm){
+      flex-direction: column;
+    }
   }
 
 </style>

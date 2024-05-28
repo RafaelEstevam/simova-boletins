@@ -3,10 +3,11 @@
     <inputComponent :inputName="'employeeName'" :inputValue="employeeName" :placeholder="'Nome do funcionário'"
       :required="true" v-model="employeeName" />
 
-    <selectComponent :inputName="'employeeActive'" :inputValue="employeeActive" v-model="employeeActive" :placeholder="'Funcionário: '"
-      :options="options" />
-    
-    <button type="button" @click="handleFilter">Filtrar</button>
+    <selectComponent :inputName="'employeeActive'" :inputValue="employeeActive" v-model="employeeActive"
+      :placeholder="'Status: '" :options="options" />
+
+    <buttonComponent @buttonAction="handleFilter" :color="'primary'" :variant="'filled'"
+      :type="'button'" :label="'Filtrar'" />
   </div>
 </template>
 

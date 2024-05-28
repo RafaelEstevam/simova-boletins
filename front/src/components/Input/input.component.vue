@@ -1,6 +1,10 @@
 <template>
-  <input :name="inputName" :id="inputName" :placeholder="placeholder" :value="value" :required="required" :readonly="readonly"
-    @input="$emit('update:modelValue', $event.target.value)" />
+  <div class="input">
+    <input :required="required" :name="inputName" :id="inputName" :placeholder="placeholder" :value="value" :type="type"
+      @input="$emit('update:modelValue', $event.target.value)" class="input__field"
+      :class="showValidation && 'error-input'" />
+  </div>
+
 </template>
 
 <script>
@@ -30,7 +34,7 @@ export default defineComponent({
     readonly: {
       type: Boolean,
       default: false
-    }
+    },
   },
   setup(props, { emit }) {
     const value = computed({
@@ -48,4 +52,19 @@ export default defineComponent({
 
 <style lang="scss">
 @import '@/styles/tokens.scss';
+
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+  width: 100%;
+}
+
+.input__field {
+  border: 0px;
+  border-radius: $spacing-md;
+  padding: $spacing-md;
+  background-color: $light-color;
+  width: 100%;
+}
 </style>
