@@ -9,3 +9,11 @@ export const getEmployees = async (data, callback) => {
     console.log(e);
   });
 }
+
+export const getEmployeeById = async (data, callback) => {
+  const response = await api.get(`/employees/${data.id}`).then((response) => {
+    callback(response.data);
+  }).catch((e) => {
+    console.log(e)
+  })
+}

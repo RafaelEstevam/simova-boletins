@@ -24,7 +24,7 @@
     </defaultTemplate>
 
     <modalComponent v-if="showModal">
-      <appointmentsModal :data="modalData" @closeModal="handleCloseModal" />
+      <appointmentsModal :modalData="modalData" @closeModal="handleCloseModal" />
     </modalComponent>
 
   </div>
@@ -50,7 +50,7 @@ import BulletinsFilter from '@/filters/bulletins.filter.vue';
 
 import AppointmentsModal from '@/modals/appointments.modal.vue';
 
-import { getEmployees } from '@/services/employees.service';
+import { getEmployeeById } from '@/services/employees.service';
 
 export default defineComponent({
   name: 'bulletins',
@@ -73,8 +73,7 @@ export default defineComponent({
     const $store = useStore();
     const $route = useRoute();
     const userId = computed(() => $route.params.employeeId);
-    const bulletins = computed(() => $store.state.bulletins);
-    const appointments = computed(() => $store.state.appointments);
+    const bulletins = computed(() => $store.getters.getBulletins);
     const showModal = ref(false);
 
     return {
@@ -89,6 +88,7 @@ export default defineComponent({
   data() {
     const modalData = {};
     const employee = {};
+    const employeeId = this.userId;
     const columns = [
       { label: 'Id', width: '10%', key: 'id' },
       { label: 'Id Funcionário', width: '10%', key: 'employeeId' },
@@ -105,7 +105,9 @@ export default defineComponent({
     ];
     return {
       columns,
-      employee
+      employee,
+      modalData,
+      employeeId
     }
   },
 
@@ -134,17 +136,17 @@ export default defineComponent({
     handleCloseModal() {
       this.showModal = false
     },
-    handleGetEmployeeById() {
-      if (this.userId) {
-        const data = {
-          id: this.userId
-        };
-        getEmployees(data, (response) => this.employee = response[0])
-      }
-    }
+    async handleGetEmployeeById(){
+      const data = {
+        id: this.employeeId
+      };
+      await getEmployeeById(data, (response) => this.employee = response);
+    },
   },
-  mounted() {
-    this.handleGetEmployeeById()
+  async mounted() {
+    if(this.employeeId){
+      await this.handleGetEmployeeById()
+    }
   }
 })
 </script>

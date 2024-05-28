@@ -8,7 +8,7 @@
     </div>
     <div class="appointments__modal__content__wrapper col">
       <filterComponent>
-        <appointmentsFilter @filterAction="handleFilter" />
+        <appointmentsFilter :filterData="modalData" />
       </filterComponent>
       <div class="appointments__modal__content__datatable">
         <datatableComponent>
@@ -24,7 +24,7 @@
 import moment from 'moment';
 import { useStore } from 'vuex';
 import { defineComponent, computed } from 'vue';
-import { getEmployees } from '@/services/employees.service';
+import { getEmployeeById } from '@/services/employees.service';
 
 import FilterComponent from '@/components/Filter/filter.component.vue';
 import CardComponent from '@/components/Card/card.component.vue';
@@ -47,24 +47,24 @@ export default defineComponent({
     ButtonComponent
   },
   props: {
-    data: {
+    modalData: {
       type: Object
     }
   },
+  
   emits: ['closeModal'],
+
   setup() {
     const $store = useStore();
-    const consolidatedAppointments = computed(() => $store.getters.getAppointments);
+    const appointments = computed(() => $store.state.appointments);
     return {
-      consolidatedAppointments,
+      appointments,
       $store
     }
   },
-  data() {
-    const modalDetails = this.data;
-    const appointments = modalDetails.appointmentsList;
-    const employee = {};
 
+  data() {
+    const employee = {};
     const columns = [
       { label: 'Id', width: '10%', key: 'id' },
       { label: 'Cor', width: '10%', key: 'color', isElement: true, element: (e) => `<div class="appointments__modal__content__datatable__color" style="background: ${e}"></div>` },
@@ -75,32 +75,24 @@ export default defineComponent({
 
     return {
       columns,
-      appointments,
       employee,
-      modalDetails
     }
   },
-  created() {
-    this.$store.dispatch('handleFilterAppointments', this.data.appointmentsList);
-  },
+  
   methods: {
-    handleFilter(data) {
-      if (data.code !== '') {
-        this.appointments = this.consolidatedAppointments.filter((appointment) => appointment.code == data.code);
-      } else {
-        this.appointments = this.consolidatedAppointments;
-      }
+    async handleGetEmployeeById(){
+      const data = {
+        id: this.modalData.employeeId
+      };
+      await getEmployeeById(data, (response) => this.employee = response);
     },
     handleCloseModal(){
       this.$emit('closeModal');
     }
   },
-  mounted() {
-    const data = {
-      id: this.modalDetails.employeeId
-    };
-
-    getEmployees(data, (response) => this.employee = response[0])
+  async mounted() {
+    await this.handleGetEmployeeById()
+    this.$store.dispatch('handleFilterAppointments', this.modalData.appointmentsList)
   }
 })
 </script>
