@@ -11,6 +11,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { useStore } from 'vuex';
 import LogoComponent from '@/components/Logo/logo.component.vue';
 import ButtonComponent from '@/components/Button/button.component.vue';
 
@@ -20,9 +21,15 @@ export default defineComponent({
     LogoComponent,
     ButtonComponent
   },
+  setup(){
+    const $store = useStore();
+    return {
+      $store
+    }
+  },
   methods: {
     handleShowMenu(){
-
+      this.$store.dispatch('handleShowMenu', true)
     }
   }
 })

@@ -52,7 +52,11 @@ export default defineComponent({
         name: this.employeeName,
         active: this.employeeActive
       }
-      await getEmployees(data, (response) => this.$store.dispatch('handleFilterEmployees', response))
+      this.$store.dispatch('handleShowLoading', true);
+      await getEmployees(data, (response) => {
+        this.$store.dispatch('handleFilterEmployees', response);
+        this.$store.dispatch('handleShowLoading', false);
+      })
     },
     async handleDoDefaultFilter() {
       this.employeeName = '';

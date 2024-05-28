@@ -84,6 +84,7 @@ export default defineComponent({
   &.outlined {
     border: 2px solid;
     background: transparent;
+    padding: 12px $spacing-md;
 
     &.primary {
       border-color: $primary-color;

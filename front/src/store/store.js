@@ -7,7 +7,9 @@ export const store = createStore({
       bulletins: [],
       consolidatedBulletins: [],
       employees: [],
-      employee: {}
+      employee: {},
+      showLoading: false,
+      showMenu: false,
     }
   },
 
@@ -26,7 +28,13 @@ export const store = createStore({
     },
     setEmployees(state, payload){
       state.employees = payload
-    }
+    },
+    setShowLoading(state, show) {
+      state.showLoading = show;
+    },
+    setShowMenu(state, show) {
+      state.showMenu = show;
+    },
   },
 
   actions: {
@@ -44,7 +52,13 @@ export const store = createStore({
     },
     handleFilterEmployees({commit}, employees){
       commit('setEmployees', employees);
-    }
+    },
+    handleShowLoading({ commit }, showLoading){
+      commit('setShowLoading', showLoading);
+    },
+    handleShowMenu({ commit }, showMenu){
+      commit('setShowMenu', showMenu);
+    },
   },
 
   getters: {

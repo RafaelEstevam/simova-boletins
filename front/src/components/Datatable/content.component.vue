@@ -1,8 +1,6 @@
 <template>
   <div class="datatable__content">
-    <div class="datatable__content__no__data" v-if="list.length === 0">
-      <p class="datatable__content__no__data__text">Sem dados para exibir</p>
-    </div>
+    <datatableErrorComponent v-if="list.length === 0"/>
     <div class="datatable__content__rows" v-if="list.length > 0" v-for="item in list" :key="itens?.id">
       <div v-for="(column, index) in columns" :key="column.label" class="datatable__column" :style="`width:
       ${column.width}`">
@@ -22,11 +20,12 @@
 
 <script>
 import { defineComponent } from 'vue';
-import ButtonComponent from '../Button/button.component.vue';
+import ButtonComponent from '@/components/Button/button.component.vue';
+import DatatableErrorComponent from '@/components/Datatable/error.component.vue';
 
 export default defineComponent({
   name: 'datatableContentComponent',
-  components: { ButtonComponent },
+  components: { ButtonComponent, DatatableErrorComponent, DatatableErrorComponent },
   props: {
     list: {
       type: Array,
@@ -45,19 +44,6 @@ export default defineComponent({
 
 <style lang="scss">
 @import '@/styles/tokens.scss';
-
-.datatable__content__no__data{
-  display: flex;
-  justify-content: center;
-  background: $danger-color-light;
-  border-radius: $spacing-md;
-  padding: $spacing-md;
-}
-
-.datatable__content__no__data__text{
-  color: $gray-color;
-  font-weight: 600; 
-}
 
 .datatable__content{
   width: 100%;
