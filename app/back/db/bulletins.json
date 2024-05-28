@@ -1,0 +1,122 @@
+[
+  {
+    "id": 10,
+    "employeeId": 1,
+    "startDate": "2023-10-01 08:00:00",
+    "endDate": "2023-10-01 12:00:00",
+    "appointments": [
+      {
+        "id": 1,
+        "date": "2023-10-01 08:10:00",
+        "activityId": 1
+      },
+      {
+        "id": 2,
+        "date": "2023-10-01 10:00:00",
+        "activityId": 3
+      },
+      {
+        "id": 4,
+        "date": "2023-10-01 10:15:00",
+        "activityId": 4
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "employeeId": 4,
+    "startDate": "2023-10-01 08:00:00",
+    "endDate": "2023-10-01 15:00:00",
+    "appointments": [
+      {
+        "id": 5,
+        "date": "2023-10-01 08:10:00",
+        "activityId": 1
+      },
+      {
+        "id": 6,
+        "date": "2023-10-01 10:00:00",
+        "activityId": 4
+      },
+      {
+        "id": 7,
+        "date": "2023-10-01 12:15:00",
+        "activityId": 2
+      },
+      {
+        "id": 10,
+        "date": "2023-10-01 13:15:00",
+        "activityId": 4
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "employeeId": 3,
+    "startDate": "2023-10-01 08:00:00",
+    "endDate": "2023-10-01 15:00:00",
+    "appointments": [
+      {
+        "id": 17,
+        "date": "2023-10-01 08:10:00",
+        "activityId": 1
+      },
+      {
+        "id": 18,
+        "date": "2023-10-01 10:00:00",
+        "activityId": 4
+      },
+      {
+        "id": 19,
+        "date": "2023-10-01 12:15:00",
+        "activityId": 2
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "employeeId": 3,
+    "startDate": "2023-10-01 09:00:00",
+    "endDate": "2023-10-01 17:00:00",
+    "appointments": [
+      {
+        "id": 20,
+        "date": "2023-10-01 08:10:00",
+        "activityId": 1
+      },
+      {
+        "id": 21,
+        "date": "2023-10-01 10:00:00",
+        "activityId": 4
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "employeeId": 1,
+    "startDate": "2023-10-02 08:00:00",
+    "endDate": "2023-10-02 15:00:00",
+    "appointments": [
+      {
+        "id": 30,
+        "date": "2023-10-02 08:10:00",
+        "activityId": 1
+      },
+      {
+        "id": 31,
+        "date": "2023-10-02 10:00:00",
+        "activityId": 4
+      },
+      {
+        "id": 32,
+        "date": "2023-10-02 12:15:00",
+        "activityId": 2
+      },
+      {
+        "id": 33,
+        "date": "2023-10-02 13:15:00",
+        "activityId": 4
+      }
+    ]
+  }
+]
