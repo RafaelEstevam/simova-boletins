@@ -7,7 +7,6 @@
       :options="options" />
     
     <button type="button" @click="handleFilter">Filtrar</button>
-    <!-- <button type="button" @click="handleDoDefaultFilter">Recarregar</button> -->
   </div>
 </template>
 
@@ -47,13 +46,10 @@ export default defineComponent({
     }
   },
   methods: {
-    updateCheckBox(value) {
-      this.employeeActive = value;
-    },
     async handleFilter(filter) {
       const data = {
         name: this.employeeName,
-        active: this.employeeActive === null ? '' : this.employeeActive
+        active: this.employeeActive
       }
       getEmployees(data, (response) => this.$store.dispatch('handleFilterEmployees', response))
     },

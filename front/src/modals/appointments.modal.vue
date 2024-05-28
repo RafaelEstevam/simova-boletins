@@ -84,23 +84,11 @@ export default defineComponent({
     this.$store.dispatch('handleFilterAppointments', this.data.appointmentsList);
   },
   methods: {
-    handleFilter(data) {
-      if (data.code !== '') {
-        this.appointments = this.consolidatedAppointments.filter((appointment) => appointment.code == data.code);
-      } else {
-        this.appointments = this.consolidatedAppointments;
-      }
-    },
     handleCloseModal(){
       this.$emit('closeModal');
     }
   },
   mounted() {
-    const data = {
-      id: this.modalDetails.employeeId
-    };
-
-    getEmployees(data, (response) => this.employee = response[0])
   }
 })
 </script>

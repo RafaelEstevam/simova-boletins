@@ -74,7 +74,6 @@ export default defineComponent({
     const $route = useRoute();
     const userId = computed(() => $route.params.employeeId);
     const bulletins = computed(() => $store.state.bulletins);
-    const appointments = computed(() => $store.state.appointments);
     const showModal = ref(false);
 
     return {
@@ -105,7 +104,8 @@ export default defineComponent({
     ];
     return {
       columns,
-      employee
+      employee,
+      modalData
     }
   },
 
@@ -135,12 +135,6 @@ export default defineComponent({
       this.showModal = false
     },
     handleGetEmployeeById() {
-      if (this.userId) {
-        const data = {
-          id: this.userId
-        };
-        getEmployees(data, (response) => this.employee = response[0])
-      }
     }
   },
   mounted() {
