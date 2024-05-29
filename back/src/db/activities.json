@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "code": 101,
+    "description": "Issue 10",
+    "color": "#bbf7d0"
+  },
+  {
+    "id": 2,
+    "code": 201,
+    "description": "Almoço",
+    "color": "#f97316"
+  },
+  {
+    "id": 3,
+    "code": 203,
+    "description": "Interrupção",
+    "color": "#dc2626"
+  },
+  {
+    "id": 4,
+    "code": 102,
+    "description": "Issue 100",
+    "color": "#84cc16"
+  }
+]

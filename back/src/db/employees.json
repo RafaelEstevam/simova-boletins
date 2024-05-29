@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Employee 1",
+    "code": "1",
+    "active": true,
+    "image": "https://raw.githubusercontent.com/daltondiaz/test-frontend/main/assets/images/employee1.png"
+  },
+  {
+    "id": 2,
+    "name": "Employee 11",
+    "code": "3",
+    "active": true,
+    "image": "https://raw.githubusercontent.com/daltondiaz/test-frontend/main/assets/images/employee2.png"
+  },
+  {
+    "id": 3,
+    "name": "Employee 17",
+    "code": "5",
+    "active": true,
+    "image": "https://raw.githubusercontent.com/daltondiaz/test-frontend/main/assets/images/employee3.png"
+  },
+  {
+    "id": 4,
+    "name": "Employee 13",
+    "code": "7",
+    "active": true,
+    "image": "https://raw.githubusercontent.com/daltondiaz/test-frontend/main/assets/images/employee4.png"
+  }
+]
