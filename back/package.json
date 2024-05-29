@@ -56,7 +56,7 @@
     "dev": "nodemon ./src/index.js",
     "build": "babel src --out-dir dist && npm run copyjson",
     "copyjson": "cpx src/**/*.json dist",
-    "start": "node ./dist/index.js"
+    "start": "npm run build && node ./dist/index.js"
   },
   "author": "Rafael Estevam de Oliveira",
   "license": "ISC"
