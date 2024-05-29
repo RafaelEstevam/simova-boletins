@@ -3,6 +3,7 @@
     "@babel/cli": "^7.24.6",
     "@babel/core": "^7.24.6",
     "@babel/preset-env": "^7.24.6",
+    "cpx": "^1.5.0",
     "env-cmd": "^10.1.0",
     "nodemon": "^3.1.0",
     "vercel": "^33.6.2"
@@ -53,7 +54,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/index.js",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist && npm run copyjson",
+    "copyjson": "cpx src/**/*.json dist",
+    "start": "node ./dist/index.js"
   },
   "author": "Rafael Estevam de Oliveira",
   "license": "ISC"
