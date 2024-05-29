@@ -55,7 +55,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/index.js",
     "build": "babel src --out-dir dist && npm run copyjson",
-    "copyjson": "cp src/**/*.json dist",
+    "copyjson": "cpx src/**/*.json dist",
     "start": "node dist/index.js"
   },
   "author": "Rafael Estevam de Oliveira",
