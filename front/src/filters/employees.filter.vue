@@ -6,8 +6,8 @@
     <selectComponent :inputName="'employeeActive'" :inputValue="employeeActive" v-model="employeeActive"
       :placeholder="'Status: '" :options="options" />
 
-    <buttonComponent @buttonAction="handleFilter" :color="'primary'" :variant="'filled'"
-      :type="'button'" :label="'Filtrar'" />
+    <buttonComponent @buttonAction="handleFilter" :color="'primary'" :variant="'filled'" :type="'button'"
+      :label="'Filtrar'" />
   </div>
 </template>
 
@@ -52,11 +52,18 @@ export default defineComponent({
         name: this.employeeName,
         active: this.employeeActive
       }
-      this.$store.dispatch('handleShowLoading', true);
-      await getEmployees(data, (response) => {
-        this.$store.dispatch('handleFilterEmployees', response);
+
+      try {
+        this.$store.dispatch('handleShowLoading', true);
+        await getEmployees(data, (response) => {
+          this.$store.dispatch('handleFilterEmployees', response);
+        })
+      } catch (e){
+        console.log(e);
+      } finally{
         this.$store.dispatch('handleShowLoading', false);
-      })
+      }
+
     },
     async handleDoDefaultFilter() {
       this.employeeName = '';

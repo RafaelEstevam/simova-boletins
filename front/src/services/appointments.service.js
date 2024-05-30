@@ -6,6 +6,6 @@ export const getAppointments = async (data, callback) => {
   const response = await api.get(`/appointments?${query}`).then((response) => {
     callback(response.data)
   }).catch((e) => {
-    console.log(e);
+    throw new Error('Apontamentos não encontrados');
   });
 }

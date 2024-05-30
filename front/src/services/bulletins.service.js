@@ -6,7 +6,7 @@ export const getBulletins = async (data, callback) => {
   const response = await api.get(`/bulletins?${query}`).then((response) => {
     callback(response.data)
   }).catch((e) => {
-    console.log(e);
+    throw new Error('Boletins não encontrados');
   });
 }
 
@@ -14,6 +14,6 @@ export const getBulletinsByEmployeeId = async (data, callback) => {
   const response = await api.get(`/bulletins/employees/${data.id}`).then((response) => {
     callback(response.data);
   }).catch((e) => {
-    console.log(e)
+    throw new Error('Boletins desse funcionário não encontrados');
   })
 }

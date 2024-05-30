@@ -65,21 +65,36 @@ export default defineComponent({
         name: this.employeeName,
         totalHours: this.totalHours
       }
-      this.$store.dispatch('handleShowLoading', true);
-      await getBulletins(data, (response) => {
+
+      
+      try {
+        this.$store.dispatch('handleShowLoading', true);
+        await getBulletins(data, (response) => {
         this.$store.dispatch('handleFilterBulletins', response);
-        this.$store.dispatch('handleShowLoading', false);
       });
+      } catch (e){
+        console.log(e);
+      } finally{
+        this.$store.dispatch('handleShowLoading', false);
+      }
+      
     },
     async handleFilterBulletinsByEmployeeId() {
       const data = {
         id: this.userId
       }
-      this.$store.dispatch('handleShowLoading', false);
-      await getBulletinsByEmployeeId(data, (response) => {
-        this.employeeBulletins = response;
+      
+      try {
+        this.$store.dispatch('handleShowLoading', true);
+        await getBulletinsByEmployeeId(data, (response) => {
+          this.employeeBulletins = response;
+        });
+      } catch (e){
+        console.log(e);
+      } finally{
         this.$store.dispatch('handleShowLoading', false);
-      });
+      }
+      
       this.handleSetBulletsOnStore();
     },
     async handleDoDefaultFilter() {

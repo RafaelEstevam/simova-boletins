@@ -6,7 +6,7 @@ export const getEmployees = async (data, callback) => {
   const response = await api.get(`/employees?${query}`).then((response) => {
     callback(response.data)
   }).catch((e) => {
-    console.log(e);
+    throw new Error('Funcionários não encontrados');
   });
 }
 
@@ -14,6 +14,6 @@ export const getEmployeeById = async (data, callback) => {
   const response = await api.get(`/employees/${data.id}`).then((response) => {
     callback(response.data);
   }).catch((e) => {
-    console.log(e)
+    throw new Error('Funcionário não encontrados');
   })
 }
