@@ -31,8 +31,8 @@ Esse comando irá iniciar o backend da aplicação no endereço http://localhost
 As rotas disponíveis no backend são:
 
 - GET - '/' : "Hello world";
-- GET - '/employees?name=<nome-do-funcionario>&active=<'true'||'false'>' : Retorna a lista de todos os funcionários;
+- GET - '/employees?name=&active= : Retorna a lista de todos os funcionários;
 - GET - '/employees/:id' (id: Id do funcionário) : Retorna os dados do funcionário de acordo com ID;
-- GET - '/bulletins?name=<nome-do-funcionario>&totalHours=<total-de-horas>' : Retorna a lista de todos os boletins;
+- GET - '/bulletins?name=&totalHours=' : Retorna a lista de todos os boletins;
 - GET - '/bulletins/employees/:id' : Retorna os boletins de acordo com o ID do funcionário;
 - GET - '/appointments' : Retorna todas as atividades;

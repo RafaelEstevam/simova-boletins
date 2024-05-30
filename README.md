@@ -32,7 +32,6 @@ A lista de tecnologias utilizadas na aplicação consiste em:
 
 - Vue: Framework para desenvolvimento de aplicação SPA no frontend;
 - Vuex: Gerenciador de estados globais para aplicações em Vue;
-- Javascript: Tipagem para o Javascript;
 - Axios: Ferramenta para integração e execução de requisições no frontend;
 - Sass: Pré-processador de CSS, para facilitar o desenvolvimento do CSS;
 - Vitest: Testes unitários.
