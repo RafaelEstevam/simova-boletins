@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showFullLoading" class="loading" :class="showFullLoading && 'fullscreen'">
+  <div v-if="showLoading" class="loading fullscreen">
     <div class="load" :class="variant"></div>
   </div>
 </template>
@@ -26,11 +26,11 @@
       }
     },
 
-    async setup(){
+    setup(){
       const store = useStore();
-      const showFullLoading = computed(() => store.state.showLoading);
+      const showLoading = computed(() => store.state.showLoading);
       return{
-        showFullLoading
+        showLoading
       }
     },
 
