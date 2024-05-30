@@ -6,7 +6,7 @@
     <selectComponent :inputName="'employeeActive'" :inputValue="employeeActive" v-model="employeeActive"
       :placeholder="'Status: '" :options="options" />
 
-    <buttonComponent @buttonAction="handleFilter" :color="'primary'" :variant="'filled'" :type="'button'"
+    <buttonComponent :id="'filter-employees'" @buttonAction="handleFilter" :color="'primary'" :variant="'filled'" :type="'button'"
       :label="'Filtrar'" />
   </div>
 </template>
@@ -16,7 +16,6 @@ import { getEmployees } from '@/services/employees.service';
 
 import { defineComponent } from 'vue';
 import InputComponent from '@/components/Input/input.component.vue';
-import CheckboxComponent from '@/components/Checkbox/checkbox.component.vue';
 import ButtonComponent from '@/components/Button/button.component.vue';
 import SelectComponent from '../components/Select/select.component.vue';
 
@@ -25,7 +24,6 @@ export default defineComponent({
   components: {
     InputComponent,
     ButtonComponent,
-    CheckboxComponent,
     SelectComponent
   },
   setup() {

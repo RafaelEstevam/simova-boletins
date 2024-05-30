@@ -1,20 +1,29 @@
 <template>
   <div class="datatable">
-    <slot></slot>
+    <datatableHeaderComponent :columns="columns" />
+    <datatableContentComponent :list="list" :columns="columns" />
   </div>
 </template>
 
 <script>
   import { defineComponent } from 'vue';
 
-  import DatatableHeaderComponent from './header.component.vue';
-  import DatatableContentComponent from './content.component.vue';
+  import DatatableHeaderComponent from './Header/header.component.vue';
+  import DatatableContentComponent from './Content/content.component.vue';
 
   export default defineComponent({
     name: 'datatableComponent',
     components: {
       DatatableHeaderComponent,
       DatatableContentComponent
+    },
+    props: {
+      columns: {
+        type: Array
+      },
+      list: {
+        type: Array
+      }
     }
 
   })
@@ -37,4 +46,4 @@
     }
   }
 
-</style>
+</style>./Content/content.component.vue./Header/header.component.vue

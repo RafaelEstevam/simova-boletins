@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header__button">
-      <buttonComponent @buttonAction="handleShowMenu" :color="'primary'" :variant="'filled'" :type="'button'"
+      <buttonComponent :id="'header-menu'" @buttonAction="handleShowMenu" :color="'primary'" :variant="'filled'" :type="'button'"
       :label="'Menu'"/>
     </div>
     <logoComponent :horizontal="true" :white="false" />

@@ -7,6 +7,7 @@
         <div class="login__wrapper__access">
           <h2 class="login__wrapper__access__text">Acesso administrativo</h2>
           <buttonComponent
+            :id="'login'"
             @buttonAction="handleGoToEmployees"
             :label="'Acessar painel'"
             :color="'white'"

@@ -1,5 +1,5 @@
 <template>
-  <div class="card" @click="handleCardAction(data)" :class="{
+  <div class="card" :id="`${data?.id}-card-click`" @click="handleCardAction(data)" :class="{
     'card--active': data?.active
   }">
     <div class="card__header">

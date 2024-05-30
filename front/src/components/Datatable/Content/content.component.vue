@@ -1,14 +1,14 @@
 <template>
   <div class="datatable__content">
     <datatableErrorComponent v-if="list.length === 0"/>
-    <div class="datatable__content__rows" v-if="list.length > 0" v-for="item in list" :key="itens?.id">
+    <div class="datatable__content__rows" v-if="list.length > 0" v-for="item in list" :key="item?.id">
       <div v-for="(column, index) in columns" :key="column.label" class="datatable__column" :style="`width:
       ${column.width}`">
         <p class="datatable__content__rows__header">{{ column.label }}: </p>
         <p v-if="!column.actions && !column.isElement && !column.data">{{ item[column.key] }}</p>
         <p v-if="column.data">{{ column.data(item[column.key]) }}</p>
         <div v-if="column?.actions && column?.actions.length > 0">
-          <buttonComponent v-for="action in column.actions" :label="action.label" :color="'secondary'"
+          <buttonComponent :id="`${item.id}-${column.key}-action`" v-for="action in column.actions" :label="action.label" :color="'secondary'"
             :variant="'filled'" :type="'button'" :size="'sm'" @buttonAction="action.buttonAction(item)" />
         </div>
         <div v-if="column?.isElement" v-html="column.element(item[column.key])"></div>
@@ -21,7 +21,7 @@
 <script>
 import { defineComponent } from 'vue';
 import ButtonComponent from '@/components/Button/button.component.vue';
-import DatatableErrorComponent from '@/components/Datatable/error.component.vue';
+import DatatableErrorComponent from '@/components/Datatable/Error/error.component.vue';
 
 export default defineComponent({
   name: 'datatableContentComponent',
@@ -74,4 +74,4 @@ export default defineComponent({
     display: block
   }
 }
-</style>
+</style>@/components/Datatable/Error/error.component.vue

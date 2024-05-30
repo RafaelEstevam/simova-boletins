@@ -3,7 +3,7 @@
     <div class="appointments__modal__content__sticky">
       <div class="appointments__modal__content__sticky__wrapper">
         <cardComponent :data="employee" />
-        <buttonComponent :label="'Fechar'" @buttonAction="handleCloseModal" :color="'danger'" :variant="'filled'"
+        <buttonComponent :id="'close-modal'" :label="'Fechar'" @buttonAction="handleCloseModal" :color="'danger'" :variant="'filled'"
           :type="'button'" />
       </div>
     </div>
@@ -12,9 +12,7 @@
         <appointmentsFilter :filterData="modalData" />
       </filterComponent>
       <div class="appointments__modal__content__datatable">
-        <datatableComponent>
-          <datatableHeaderComponent :columns="columns" />
-          <datatableContentComponent :list="appointments" :columns="columns" />
+        <datatableComponent :columns="columns" :list="appointments">
         </datatableComponent>
       </div>
     </div>
@@ -30,8 +28,6 @@ import { getEmployeeById } from '@/services/employees.service';
 import FilterComponent from '@/components/Filter/filter.component.vue';
 import CardComponent from '@/components/Card/card.component.vue';
 import DatatableComponent from '@/components/Datatable/datatable.component.vue';
-import DatatableHeaderComponent from '@/components/Datatable/header.component.vue';
-import DatatableContentComponent from '@/components/Datatable/content.component.vue';
 import ButtonComponent from '@/components/Button/button.component.vue';
 
 import AppointmentsFilter from '@/filters/appointments.filter.vue';
@@ -42,8 +38,6 @@ export default defineComponent({
     FilterComponent,
     AppointmentsFilter,
     DatatableComponent,
-    DatatableHeaderComponent,
-    DatatableContentComponent,
     CardComponent,
     ButtonComponent
   },
@@ -165,4 +159,4 @@ export default defineComponent({
 
   }
 }
-</style>
+</style>@/components/Datatable/Content/content.component.vue@/components/Datatable/Header/header.component.vue

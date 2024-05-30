@@ -23,7 +23,7 @@ import { defineComponent, computed } from 'vue';
 import DefaultTemplate from '@/templates/default.template.vue';
 import FilterComponent from '@/components/Filter/filter.component.vue';
 import CardComponent from '@/components/Card/card.component.vue';
-import DatatableErrorComponent from '@/components/Datatable/error.component.vue';
+import DatatableErrorComponent from '@/components/Datatable/Error/error.component.vue';
 
 import EmployeesFilter from '@/filters/employees.filter.vue';
 
@@ -63,3 +63,4 @@ export default defineComponent({
   flex-wrap: wrap;
 }
 </style>
+@/components/Datatable/Error/error.component.vue

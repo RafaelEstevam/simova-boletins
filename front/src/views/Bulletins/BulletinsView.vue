@@ -9,14 +9,10 @@
           <div v-if="employee && employee.id" class="bulletins__content__sticky">
             <div class="bulletins__content__sticky__wrapper">
               <cardComponent :data="employee" />
-              <!-- <buttonComponent @buttonAction="handleGoToEmployees" :label="'Ver Funcionários'" :color="'primary'" :variant="'outlined'" :type="'button'" :size="'sm'" /> -->
-              <!-- <buttonComponent @buttonAction="handleGoToBulletins" :label="'Ver Boletins'" :color="'primary'" :variant="'outlined'" :type="'button'" :size="'sm'" /> -->
             </div>
           </div>
           <div class="bulletins__content__datatable">
-            <datatableComponent>
-              <datatableHeaderComponent :columns="columns" />
-              <datatableContentComponent :list="bulletins" :columns="columns" />
+            <datatableComponent :columns="columns" :list="bulletins">
             </datatableComponent>
           </div>
         </div>
@@ -41,8 +37,6 @@ import DefaultTemplate from '@/templates/default.template.vue';
 import FilterComponent from '@/components/Filter/filter.component.vue';
 import CardComponent from '@/components/Card/card.component.vue';
 import DatatableComponent from '@/components/Datatable/datatable.component.vue';
-import DatatableHeaderComponent from '@/components/Datatable/header.component.vue';
-import DatatableContentComponent from '@/components/Datatable/content.component.vue';
 import ModalComponent from '@/components/Modal/modal.component.vue';
 import ButtonComponent from '@/components/Button/button.component.vue';
 
@@ -60,8 +54,6 @@ export default defineComponent({
     FilterComponent,
     CardComponent,
     DatatableComponent,
-    DatatableHeaderComponent,
-    DatatableContentComponent,
     ModalComponent,
     ButtonComponent,
     BulletinsFilter,
@@ -191,3 +183,4 @@ export default defineComponent({
   }
 }
 </style>
+@/components/Datatable/Content/content.component.vue@/components/Datatable/Header/header.component.vue

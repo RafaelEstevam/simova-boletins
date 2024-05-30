@@ -4,7 +4,7 @@
       :placeholder="'Nome do funcionário'" :required="true" :readonly="readonly" v-model="employeeName" />
     <inputComponent :inputName="'totalHours'" :inputValue="totalHours" :placeholder="'Total de horas'" :required="true"
       v-model="totalHours" />
-    <buttonComponent @buttonAction="handleDoDefaultFilter" :color="'primary'" :variant="'filled'"
+    <buttonComponent :id="'filter-bulletins'" @buttonAction="handleDoDefaultFilter" :color="'primary'" :variant="'filled'"
       :type="'button'" :label="'Filtrar'" />
   </div>
 </template>

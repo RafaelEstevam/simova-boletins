@@ -4,16 +4,16 @@
       'showMenu': showMenu
     }">
       <div class="aside__nav__button">
-        <buttonComponent @buttonAction="handleHideMenu" :color="'primary'" :variant="'outlined'" :type="'button'"
+        <buttonComponent :id="'header-hide-menu'" @buttonAction="handleHideMenu" :color="'primary'" :variant="'outlined'" :type="'button'"
           :label="'Fechar'" />
       </div>
       <ul class="aside__nav__menu">
         <li class="aside__nav__menu__item">
-          <buttonComponent @buttonAction="handleGoToLink('/employees')" :fullwidth="true" :color="'primary'"
+          <buttonComponent :id="'go-to-employees'" @buttonAction="handleGoToLink('/employees')" :fullwidth="true" :color="'primary'"
             :variant="'filled'" :type="'button'" :label="'Funcionários'" />
         </li>
         <li class="aside__nav__menu__item">
-          <buttonComponent @buttonAction="handleGoToLink('/bulletins')" :fullwidth="true" :color="'primary'"
+          <buttonComponent :id="'go-to-bulletins'" @buttonAction="handleGoToLink('/bulletins')" :fullwidth="true" :color="'primary'"
             :variant="'filled'" :type="'button'" :label="'Boletins'" />
         </li>
       </ul>
