@@ -1,6 +1,8 @@
 <template>
   <div class="login view">
-    <div class="login__img" :style="backgroundImageStyle"></div>
+    <div class="login__img">
+      <ImageComponent />
+    </div>
     <div class="login__wrapper">
       <div class="login__wrapper__login">
         <logoComponent :horizontal="true" :white="true" />
@@ -25,6 +27,7 @@ import { useRouter } from 'vue-router';
 import { defineComponent } from 'vue';
 import ButtonComponent from '@/components/Button/button.component.vue';
 import LogoComponent from '@/components/Logo/logo.component.vue';
+import ImageComponent from '@/components/Image/image.component.vue';
 import banner1 from '@/assets/banner-1.jpg';
 import banner2 from '@/assets/banner-2.png';
 
@@ -32,7 +35,8 @@ export default defineComponent({
   name: 'login',
   components: {
     ButtonComponent,
-    LogoComponent
+    LogoComponent,
+    ImageComponent
   },
   setup() {
     const $router = useRouter();
@@ -78,8 +82,8 @@ export default defineComponent({
   width: 100%;
   height: 100vh;
   background-size: cover;
-  background-position: right;
-  box-shadow: 0px -100px 200px #000000 inset;
+  background-position: right; 
+  background-color: $light-color;
   @media(max-width: $screen-sm){
     display: none;
   }
