@@ -66,7 +66,7 @@ const bulletinsService = {
       return newBulletins;
     }
     return [];
-  }
+  },
 }
 
 module.exports = {bulletinsService, consolidatedBulletins};
