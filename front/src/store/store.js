@@ -8,7 +8,7 @@ export const store = createStore({
       consolidatedBulletins: [],
       employees: [],
       employee: {},
-      showLoading: true,
+      showLoading: false,
       showMenu: false,
     }
   },
