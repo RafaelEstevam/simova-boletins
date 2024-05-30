@@ -65,8 +65,6 @@ export default defineComponent({
         name: this.employeeName,
         totalHours: this.totalHours
       }
-
-      
       try {
         this.$store.dispatch('handleShowLoading', true);
         await getBulletins(data, (response) => {

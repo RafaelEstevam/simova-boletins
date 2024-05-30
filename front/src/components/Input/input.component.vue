@@ -22,7 +22,6 @@ export default defineComponent({
     },
     inputValue: {
       type: String,
-      required: true
     },
     placeholder: {
       type: String

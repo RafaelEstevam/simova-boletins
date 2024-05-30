@@ -40,6 +40,7 @@ export default defineComponent({
     const $store = useStore();
     const $router = useRouter();
     const employees = computed(() => $store.state.employees);
+    
     return {
       $router,
       employees
