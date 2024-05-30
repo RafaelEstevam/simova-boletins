@@ -8,6 +8,7 @@
       </div>
     </div>
     <div class="appointments__modal__content__wrapper appointments__modal__content">
+      <titleComponent :title="'Apontamentos'"/>
       <filterComponent>
         <appointmentsFilter :filterData="modalData" />
       </filterComponent>
@@ -30,6 +31,8 @@ import CardComponent from '@/components/Card/card.component.vue';
 import DatatableComponent from '@/components/Datatable/datatable.component.vue';
 import ButtonComponent from '@/components/Button/button.component.vue';
 
+import TitleComponent from '@/components/Title/title.component.vue';
+
 import AppointmentsFilter from '@/filters/appointments.filter.vue';
 
 export default defineComponent({
@@ -39,7 +42,8 @@ export default defineComponent({
     AppointmentsFilter,
     DatatableComponent,
     CardComponent,
-    ButtonComponent
+    ButtonComponent,
+    TitleComponent
   },
   props: {
     modalData: {
