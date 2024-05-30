@@ -35,10 +35,7 @@ export default defineComponent({
       type: Array,
       default: []
     }
-  },
-  mounted() {
-    console.log(this.$props.list)
-  },
+  }
 })
 </script>
 

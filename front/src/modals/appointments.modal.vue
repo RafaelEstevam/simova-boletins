@@ -84,9 +84,19 @@ export default defineComponent({
       const data = {
         id: this.modalData.employeeId
       };
-      await getEmployeeById(data, (response) => this.employee = response);
+
+      try {
+        this.$store.dispatch('handleShowLoading', true);
+        await getEmployeeById(data, (response) => this.employee = response);
+      } catch (e){
+        console.log(e);
+      } finally{
+        this.$store.dispatch('handleShowLoading', false);
+      }
+      
     },
     handleCloseModal() {
+      this.employee = {};
       this.$emit('closeModal');
     }
   },

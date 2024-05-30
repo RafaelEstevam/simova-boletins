@@ -131,10 +131,11 @@ export default defineComponent({
     },
     handleOpenModal(data) {
       this.modalData = data;
-      this.showModal = true
+      this.showModal = true;
     },
     handleCloseModal() {
-      this.showModal = false
+      this.modalData = {};
+      this.showModal = false;
     },
     async handleGetEmployeeById(){
       const data = {
@@ -145,7 +146,7 @@ export default defineComponent({
   },
   async mounted() {
     if(this.employeeId){
-      await this.handleGetEmployeeById()
+      await this.handleGetEmployeeById();
     }
   }
 })

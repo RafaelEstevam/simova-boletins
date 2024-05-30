@@ -98,6 +98,7 @@ export default defineComponent({
       this.handleSetBulletsOnStore();
     },
     async handleDoDefaultFilter() {
+      this.$store.dispatch('handleFilterBulletins', []);
       if (this.userId) {
         this.handleFilterBulletinsByEmployeeId()
       } else {

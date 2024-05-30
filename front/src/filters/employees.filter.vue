@@ -68,6 +68,7 @@ export default defineComponent({
     async handleDoDefaultFilter() {
       this.employeeName = '';
       this.employeeActive = null;
+      this.$store.dispatch('handleFilterEmployees', []);
       await this.handleFilter('default')
     }
   },
