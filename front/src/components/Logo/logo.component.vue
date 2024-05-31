@@ -56,8 +56,8 @@ export default defineComponent({
   line-height: $font-xxl;
   font-weight: 100;
   @media(max-width: $screen-sm){
-    font-size: $font-lg;
-  line-height: $font-lg;
+    font-size: $font-xl;
+    line-height: $font-xl;
   }
 }
 
