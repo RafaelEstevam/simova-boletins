@@ -48,7 +48,7 @@ O Design da aplicação está em: https://www.figma.com/design/Ee1bezr0NOwADmvUC
 - Node.JS: Javascript para rodar em servidor;
 - Express: Framework para desenvolvimento de aplicações REST API no Node.JS;
 
-O backend está hospedado dentro da Vercel, onde pode apresentar inconsistências devido a utilização de serviços gratuítos.
+O backend está hospedado dentro da Render, onde pode apresentar inconsistências devido a utilização de serviços gratuítos.
 
 ## Rotas da aplicação
 
