@@ -49,6 +49,9 @@ export default defineComponent({
   gap: $spacing-xs;
   justify-content: center;
   align-items: center;
+  @media(max-width: $screen-sm){
+    flex-direction: column;
+  }
 }
 
 .logo__wrapper__text {
