@@ -15,6 +15,10 @@
       <h2 class="card__content__text">{{ data?.name }}</h2>
     </div>
 
+    <div v-if="lastActivity?.description" class="card__last__activity" :style="`background-color: ${lastActivity?.color || 'transparent'}`">
+      <p class="card__content__text">{{ lastActivity?.description }}</p>
+    </div>
+
     <div class="card__footer">
       <p class="card__footer__text">Código: {{ data?.code }}</p>
     </div>
@@ -30,12 +34,23 @@ export default defineComponent({
   props: {
     data: {
       type: Object
+    },
+  },
+  data: () => {
+    const lastActivity = {};
+    return {
+      lastActivity
     }
   },
   emits: ['cardAction'],
   methods: {
     handleCardAction(data) {
       this.$emit('cardAction', data)
+    }
+  },
+  mounted(){
+    if(this.$props?.data?.updates){
+      this.lastActivity = JSON.parse(this.$props?.data?.updates)?.lastActivity;
     }
   }
 })
@@ -48,7 +63,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: $spacing-md;
   padding: $spacing-md;
   border-radius: $spacing-md;
@@ -100,6 +115,14 @@ export default defineComponent({
     border-radius: $spacing-sm;
     padding: $spacing-xs $spacing-md;
     width: 100%;
+  }
+
+  .card__last__activity{
+    padding: $spacing-xs;
+    display: flex;
+    justify-content: center;
+    border-radius: $spacing-sm;
+    box-shadow: 0px 4px 0px $secondary-color;
   }
 
   .card__content__text {

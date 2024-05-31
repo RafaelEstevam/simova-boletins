@@ -107,6 +107,8 @@ export default defineComponent({
   }
 
   .aside__nav__button {
+    position: 'relative';
+    z-index: 2;
     @media(min-width: $screen-sm) {
       display: none !important;
     }

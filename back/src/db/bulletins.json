@@ -118,5 +118,51 @@
         "activityId": 4
       }
     ]
+  },
+  {
+    "id": 20,
+    "employeeId": 3,
+    "startDate": "2023-10-01 08:00:00",
+    "endDate": "2023-10-01 12:00:00",
+    "appointments": [
+      {
+        "id": 1,
+        "date": "2023-10-01 08:10:00",
+        "activityId": 1
+      },
+      {
+        "id": 2,
+        "date": "2023-10-01 10:00:00",
+        "activityId": 3
+      },
+      {
+        "id": 4,
+        "date": "2023-10-01 10:15:00",
+        "activityId": 3
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "employeeId": 1,
+    "startDate": "2023-10-01 08:00:00",
+    "endDate": "2023-10-01 12:00:00",
+    "appointments": [
+      {
+        "id": 1,
+        "date": "2023-10-01 08:10:00",
+        "activityId": 1
+      },
+      {
+        "id": 2,
+        "date": "2023-10-01 10:00:00",
+        "activityId": 3
+      },
+      {
+        "id": 3,
+        "date": "2023-10-01 10:15:00",
+        "activityId": 1
+      }
+    ]
   }
 ]

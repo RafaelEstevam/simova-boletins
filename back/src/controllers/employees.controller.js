@@ -7,7 +7,7 @@ const employeesController = {
 
   getEmployeeById: (req, res) => {
     return res.send(employeesService.getEmployeeById(req, res))
-  }
+  },
 }
 
 module.exports = employeesController;

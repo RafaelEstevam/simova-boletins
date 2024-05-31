@@ -7,7 +7,7 @@ const bulletinsController = {
 
   getBulletinsByEmployeeId: (req, res) => {
     return res.send(bulletinsService.getBulletinsByEmployeeId(req, res))
-  }
+  },
 }
 
 module.exports = bulletinsController;

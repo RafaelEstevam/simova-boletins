@@ -1,4 +1,29 @@
-const db = require('../db');
+const db = new Object(require('../db'));
+
+const getLastBulletinsByEmployee = (employees) => {
+
+  const bulletins = db.bulletins;
+  const activities = db.activities;
+  
+  employees.map((employee) => {
+    const bulletinsList = bulletins.filter((bulletin) =>  bulletin.employeeId == employee.id);
+    const lastBulleting = bulletinsList[bulletinsList.length - 1];
+    const lastAppointment = lastBulleting ? lastBulleting.appointments[lastBulleting.appointments.length - 1] : {};
+    const lastActivity = activities.find((activity) => activity.id === lastAppointment.activityId);
+
+    const updates = {
+      lastBulleting,
+      lastAppointment,
+      lastActivity
+    }
+
+    employee.updates = JSON.stringify(updates);
+    return employee;
+  })
+
+
+  return employees
+}
 
 const employeesService = {
   getEmployees: (req) => {
@@ -7,28 +32,29 @@ const employeesService = {
     const activeEmployee = active === 'true' ? true : active === 'false' ? false : null;
 
     if (!nameEmployee && activeEmployee === null) {
-      return db.employees
+      const employees = db.employees;
+      return getLastBulletinsByEmployee(employees)
     }
 
     if (nameEmployee && activeEmployee === null) {
       const employees = db.employees.filter((item) => {
         return item.name.includes(name)
       });
-      return employees
+      return getLastBulletinsByEmployee(employees)
     }
 
     if (!nameEmployee && activeEmployee !== null) {
       const employees = db.employees.filter((item) => {
         return item.active === activeEmployee
       });
-      return employees
+      return getLastBulletinsByEmployee(employees)
     }
 
     if (nameEmployee && activeEmployee !== null) {
       const employees = db.employees.filter((item) => {
         return item.name.includes(name) && item.active === activeEmployee
       });
-      return employees
+      return getLastBulletinsByEmployee(employees)
     }
   },
 
