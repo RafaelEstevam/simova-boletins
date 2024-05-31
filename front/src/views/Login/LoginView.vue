@@ -5,14 +5,14 @@
     </div>
     <div class="login__wrapper">
       <div class="login__wrapper__login">
-        <logoComponent :horizontal="true" :white="true" />
+        <logoComponent :horizontal="true" />
         <div class="login__wrapper__access">
           <h2 class="login__wrapper__access__text">Acesso administrativo</h2>
           <buttonComponent
             :id="'login'"
             @buttonAction="handleGoToEmployees"
             :label="'Acessar painel'"
-            :color="'white'"
+            :color="'primary'"
             :variant="'outlined'"
             :type="'button'"
           />
@@ -79,6 +79,8 @@ export default defineComponent({
 }
 
 .login__img {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 100vh;
   background-size: cover;
@@ -105,10 +107,15 @@ export default defineComponent({
 }
 
 .login__wrapper__login {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: $spacing-lg;
+  background: $light-color;
+  border-radius: $spacing-md;
+  padding: $spacing-xl;
+  box-shadow: 0px 4px 0px #ccc;
 }
 
 .login__wrapper__access{

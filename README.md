@@ -39,6 +39,10 @@ A lista de tecnologias utilizadas na aplicação consiste em:
 
 O frontend está hospedado dentro da Netlify.
 
+### FIGMA
+
+O Design da aplicação está em: https://www.figma.com/design/Ee1bezr0NOwADmvUCTucQO/RECADOS-IO?node-id=0-1&t=YO0Pto01LFVhFKmi-1
+
 ### Backend
 
 - Node.JS: Javascript para rodar em servidor;
