@@ -118,14 +118,14 @@ describe('Bulletin View', () => {
     const headerColumns = headerComponent.props('columns');
     const contentColumns = contentComponent.props('columns');
 
-    columns.forEach((column) => {
+    columns.forEach((column, index) => {
       const col = headerColumns.find((headerColumn) => headerColumn.label === column.label);
-      expect(col.label).toEqual(column.label);
+      expect(col.label).toEqual(columns[index].label);
     });
 
-    columns.forEach((column) => {
+    columns.forEach((column, index) => {
       const col = contentColumns.find((contentColumn) => contentColumn.label === column.label);
-      expect(col.label).toEqual(column.label);
+      expect(col.label).toEqual(columns[index].label);
     });
 
     const rows = datatableWrapper.findAll('.datatable__content__rows');
