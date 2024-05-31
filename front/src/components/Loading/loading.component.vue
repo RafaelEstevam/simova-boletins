@@ -51,7 +51,7 @@
       left: 0;
       top: 0;
       width: 100%;
-      min-height: 100vh;
+      min-height: 100dvh;
       background-color: #00000060;
       display: flex;
       flex-direction: column;

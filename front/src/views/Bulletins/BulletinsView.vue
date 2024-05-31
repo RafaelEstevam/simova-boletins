@@ -155,7 +155,7 @@ export default defineComponent({
   &.col {
     flex-direction: column;
     width: 100%;
-    max-height: calc(100vh - 200px);
+    max-height: calc(100dvh - 200px);
     overflow-y: scroll;
     padding: 0 $spacing-md 0 0;
   }
@@ -174,7 +174,7 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     height: 100%;
-    max-height: calc(100vh - 195px);
+    max-height: calc(100dvh - 195px);
     gap: $spacing-md;
   }
 

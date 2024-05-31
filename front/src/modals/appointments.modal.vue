@@ -17,6 +17,9 @@
         </datatableComponent>
       </div>
     </div>
+    <div class="appointments__modal__data">
+      {{ employee.name }}
+    </div>
   </div>
 </template>
 
@@ -130,6 +133,12 @@ export default defineComponent({
   }
 }
 
+.appointments__modal__data{
+  @media(min-width: $screen-sm){
+    display: none;
+  }
+}
+
 .appointments__modal__content__datatable {
   width: 100%;
 }
@@ -151,15 +160,14 @@ export default defineComponent({
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
-    max-height: calc(100vh - 195px);
+    max-height: calc(100dvh - 195px);
     gap: $spacing-md;
 
-    .card {
+    .card { 
       @media(max-width: $screen-sm) {
         display: none;
       }
     }
-
 
   }
 }

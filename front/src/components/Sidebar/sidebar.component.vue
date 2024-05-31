@@ -70,8 +70,9 @@ export default defineComponent({
 
   @media(max-width: $screen-sm) {
     height: 8%;
-    order: 1
+    order: 1;
   }
+
 
   .aside__nav {
     @media(max-width: $screen-sm) {
@@ -84,13 +85,23 @@ export default defineComponent({
         position: absolute;
         top: 0;
         left: 0;
-        width: 50%;
+        width: 100%;
         height: 100%;
+        background: $overlay-color; 
         padding: $spacing-md;
-        background-color: $light-color;
         backdrop-filter: blur(1px);
         border-right: 5px solid $gray-color-light;
         z-index: 1;
+        &::before{
+          width: calc(50% + $spacing-md);
+          height: 100%;
+          pedding-right: $spacing-md;
+          background: $light-color;
+          content: ' ';
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
       }
     }
   }
@@ -109,6 +120,11 @@ export default defineComponent({
     flex-direction: column;
     gap: $spacing-md;
     width: 100%;
+    position: relative;
+    z-index: 2;
+    @media(max-width: $screen-sm){
+      width: 50%;
+    }
   }
 
   .aside__nav__menu__item {

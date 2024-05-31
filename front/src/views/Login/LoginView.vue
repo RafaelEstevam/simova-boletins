@@ -82,7 +82,7 @@ export default defineComponent({
   display: flex;
   align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   background-size: cover;
   background-position: right; 
   background-color: $light-color;

@@ -87,6 +87,11 @@ export default defineComponent({
       transform: scale(1.1);
       width: 100%;
     }
+
+    @media(max-width: $screen-md){
+      width: 70px;
+      height: 70px;
+    }
   }
 
   .card__content {
@@ -137,6 +142,11 @@ export default defineComponent({
     transition: linear all 0.1s;
     transform: scale(1.01);
     box-shadow: 0px 10px 10px $light-color
+  }
+
+  @media(max-width: $screen-sm){
+    max-width: inherit;
+    width: 100%;
   }
 }
 </style>

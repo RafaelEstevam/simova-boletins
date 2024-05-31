@@ -24,8 +24,6 @@
   .datatable__header{
     width: 100%;
     display: flex;
-    // background: $light-color;
-    // border-radius: $spacing-md;
     b{
       color: $gray-color;
       font-weight: bold;

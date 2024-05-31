@@ -33,11 +33,17 @@
 
   .title__main{
     font-size: $font-xl;
+    @media(max-width: $screen-sm){
+      font-size: $font-lg;
+    }
   }
 
   .title__subtitle{
     font-size: $font-xl;
     font-weight: 900;
+    @media(max-width: $screen-sm){
+      font-size: $font-lg;
+    }
   }
 
   .dark{
