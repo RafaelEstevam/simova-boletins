@@ -56,7 +56,7 @@ A aplicação possui as seguintes rotas:
 
 - Login: '/',
 - Funcionários: '/employees',
-- Funcionários: '/employees/:employeeID/bulletins',
+- Funcionário: '/employees/:employeeID/bulletins',
 - Boletins: '/bulletins',
 
 ## Telas da aplicação
