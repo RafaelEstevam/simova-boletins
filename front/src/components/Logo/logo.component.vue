@@ -49,9 +49,6 @@ export default defineComponent({
   gap: $spacing-xs;
   justify-content: center;
   align-items: center;
-  @media(max-width: $screen-sm){
-    flex-direction: column;
-  }
 }
 
 .logo__wrapper__text {
@@ -61,6 +58,7 @@ export default defineComponent({
   @media(max-width: $screen-sm){
     font-size: $font-xl;
     line-height: $font-xl;
+    margin-top: $spacing-sm;
   }
 }
 
